@@ -1,0 +1,1069 @@
+#!/bin/bash
+
+function faststart_init()
+{
+
+# Taken from
+# http://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
+OPTIND=1  # Reset in case getopts has been used previously in the shell.
+LOGFILE='/var/log/euca-install-'`date +%m.%d.%Y-%H.%M.%S`'.log'
+
+# Initialize our own variables:
+cookbooks_url="https://downloads.eucalyptus.cloud/software/eucalyptus/eucalyptus-cookbooks-4.4-5.tgz"
+nc_install_only=0
+wildcard_dns="nip.io"
+assume_yes=0
+batch_mode=0
+chef_log_level="info"
+
+# Environment configuration, used with batch mode:
+ciab_ntp="${ciab_ntp}"
+ciab_nic="${ciab_nic:-}"
+ciab_ipaddr="${ciab_ipaddr:-}"
+ciab_gateway="${ciab_gateway:-}"
+ciab_netmask="${ciab_netmask:-}"
+ciab_subnet="${ciab_subnet:-}"
+ciab_ips1="${ciab_ips1:-}"
+ciab_ips2="${ciab_ips2:-}"
+
+function usage()
+{
+    echo "usage: cloud-in-a-box.sh [[[-u path-to-cookbooks-tgz ] [--nc]] | [-h]]"
+}
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -u | --cookbooks-url )  shift
+                                cookbooks_url=$1
+                                ;;
+        --nc )                  nc_install_only=1
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        -y | --assumeyes )      assume_yes=1
+                                ;;
+        --batch )               batch_mode=1
+                                assume_yes=1
+                                ;;
+        --debug )               chef_log_level="debug"
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+} # end function faststart_init
+
+###############################################################################
+# TODOs:
+#   * Put *all* output for *all* commands into log file
+###############################################################################
+
+# Function for all of faststart, ensures nothing is run until script is
+# complete
+function faststart()
+{
+
+###############################################################################
+# SECTION 0: FUNCTIONS AND CONSTANTS.
+# 
+###############################################################################
+
+# Hooray for the tea cup!
+IMGS=(
+"
+   ( (     \n\
+    ) )    \n\
+  ........ \n\
+  |      |]\n\
+  \      / \n\
+   ------  \n
+" "
+     ) )   \n\
+    ( (    \n\
+  ........ \n\
+  |      |]\n\
+  \      / \n\
+   ------  \n
+" )
+IMG_REFRESH="3"
+LINES_PER_IMG=$(( $(echo $IMGS[0] | sed 's/\\n/\n/g' | wc -l) + 1 ))
+
+# Output loop for tea cup
+function tput_loop() 
+{ 
+    for((x=0; x < $LINES_PER_IMG; x++)); do tput $1; done; 
+}
+
+# Let's have some tea!
+function tea()
+{
+    local pid=$1
+    IFS='%'
+    if [ ! -t 3 ] ; then
+        while [ "$(ps ax | awk '{print $1}' | grep $pid)" ]; do
+            sleep 15
+        done
+    else
+        tput civis
+        while [ "$(ps a | awk '{print $1}' | grep $pid)" ]; do for x in "${IMGS[@]}"; do
+            echo -ne $x
+            tput_loop "cuu1"
+            sleep $IMG_REFRESH
+        done; done
+        tput_loop "cud1"
+        tput cvvis
+    fi
+}>&3  # no tea for logs
+
+# Check IP inputs to make sure they're valid
+function valid_ip()
+{
+    local  ip=$1
+    local  stat=1
+
+    if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        OIFS=$IFS
+        IFS='.'
+        ip=($ip)
+        IFS=$OIFS
+        [[ ${ip[0]} -le 255 && ${ip[1]} -le 255 \
+            && ${ip[2]} -le 255 && ${ip[3]} -le 255 ]]
+        stat=$?
+    fi
+    return $stat
+}
+
+# Timer check for runtime of the installation
+function timer()
+{
+    if [[ $# -eq 0 ]]; then
+        echo $(date '+%s')
+    else
+        local  stime=$1
+        etime=$(date '+%s')
+
+        if [[ -z "$stime" ]]; then stime=$etime; fi
+
+        dt=$((etime - stime))
+        ds=$((dt % 60))
+        dm=$(((dt / 60) % 60))
+        dh=$((dt / 3600))
+        printf '%d:%02d:%02d' $dh $dm $ds
+    fi
+}
+
+# Read a yes no input, assuming yes when applicable
+function readyesno()
+{
+    if [ $assume_yes -eq 1 ] ; then
+        if [ -z "${!1:-}" ] ; then
+            export $1="Y"
+        fi
+    else
+        read $1
+    fi
+}
+
+# Read input, guessing or using environment when applicable
+function readinput()
+{
+    if [ $batch_mode -eq 1 ] ; then
+        if [ -z "${!1:-}" ] ; then
+            export $1=""
+        fi
+    else
+        read $1
+    fi
+}
+
+function inputerror() {
+    echo "$1"
+    if [ $batch_mode -eq 1 ] ; then
+        echo "Install failed due to missing or invalid configuration"
+        exit 1
+    fi
+}
+
+# Create uuid
+uuid=`uuidgen -t`
+
+###############################################################################
+# SECTION 1: PRECHECK.
+# 
+# Any immediately diagnosable condition that might prevent Euca from being
+# properly installed should be checked here.
+###############################################################################
+
+# WARNING: if you're running on a laptop, turn sleep off in BIOS!
+# Sleep can affect VMs badly.
+
+echo "NOTE: if you're running on a laptop, you might want to make sure that"
+echo "you have turned off sleep/ACPI in your BIOS.  If the laptop goes to sleep,"
+echo "virtual machines could terminate."
+echo ""
+
+echo "Continue? [Y/n]"
+readyesno continue_laptop
+if [ "$continue_laptop" = "n" ] || [ "$continue_laptop" = "N" ]
+then 
+    echo "Stopped by user request."
+    exit 1
+fi
+
+# Invoke timer start.
+t=$(timer)
+
+echo ""
+
+# Check to make sure I'm root
+echo "[Precheck] Checking root"
+ciab_user=`whoami`
+if [ "$ciab_user" != 'root' ]; then
+    echo "======"
+    echo "[FATAL] Not running as root"
+    echo ""
+    echo "Please run Eucalyptus Faststart as the root user."
+    exit 5
+fi
+echo "[Precheck] OK, running as root"
+echo ""
+
+# Check to make sure curl is installed.
+# If the user is following directions, they should be using
+# curl already to fetch the script -- but can't guarantee that.
+echo "[Precheck] Checking curl version"
+curl --version
+if [ "$?" != "0" ]; then
+    yum -y install curl
+    if [ "$?" != "0" ]; then
+        echo "======"
+        echo "[FATAL] Could not install curl"
+        echo ""
+        echo "Failed to install curl. See $LOGFILE for details."
+        exit 7
+    fi
+fi
+echo "[Precheck] OK, curl is up to date"
+echo ""
+
+# Check disk space.
+DiskSpace=`df -Pk /var | tail -1 | awk '{ print $4}'`
+
+if [ "$DiskSpace" -lt "100000000" ]; then
+    echo "WARNING: we recommend at least 100G of disk space available"
+    echo "in /var for a Eucalyptus Faststart installation.  Running with"
+    echo "less disk space may result in issues with image and volume"
+    echo "management, and may dramatically reduce the number of instances"
+    echo "your cloud can run simultaneously."
+    echo ""
+    echo "Your free space is: `df -Ph /var | tail -1 | awk '{ print $4}'`"
+    echo ""
+    echo "Continue? [y/N]"
+    readyesno continue_disk
+    if [ "$continue_disk" = "n" ] || [ "$continue_disk" = "N" ] || [ -z "$continue_disk" ]
+    then 
+        echo "Stopped by user request."
+        exit 1
+    fi
+fi
+
+# If Eucalyptus is already installed, abort and tell the
+# user to run nuke.
+rpm -q eucalyptus
+if [ "$?" == "0" ]; then
+    echo "====="
+    echo "[FATAL] Eucalyptus already installed!"
+    echo ""
+    echo "An installation of Eucalyptus has been detected on this system. If you wish to"
+    echo "reinstall Eucalyptus, please remove the previous installation first.  If you used"
+    echo "Faststart to install previously, you can run the \"nuke\" recipe:"
+    echo ""
+    echo "  chef-client -z -o eucalyptus::nuke"
+    echo ""
+    exit 9
+fi
+
+# Check to see that we're running on CentOS or RHEL and the right version.
+echo "[Precheck] Checking OS"
+cat /etc/redhat-release | egrep 'release.*7.[3456789]' 1>&4 2>&4
+if [ "$?" != "0" ]; then
+    echo "======"
+    echo "[FATAL] Operating system not supported"
+    echo ""
+    echo "Please note: Eucalyptus Faststart only runs on RHEL or CentOS 7.3+"
+    echo ""
+    echo ""
+    exit 10
+fi
+echo "[Precheck] OK, OS is supported"
+echo ""
+
+# Check to see if PackageKit is enabled. If it is, abort and advise.
+rpm -q PackageKit
+
+if [ "$?" == "0" ]; then
+    echo "====="
+    echo "[FATAL] PackageKit detected"
+    echo ""
+    echo "The presence of PackageKit indicates that you have installed a Desktop environment."
+    echo "Please run Faststart on a minimal OS without a Desktop environment installed."
+    exit 12
+fi
+
+# Check to see if network service is active
+echo "[Precheck] Checking for network service"
+systemctl is-active network.service 1>&4 2>&4
+if [ "$?" != "0" ]; then
+    echo "====="
+    echo "WARNING: Network service is not active."
+    echo ""
+    echo "Do you want me to enable the network service?"
+    echo ""
+    echo "If you answer 'yes' I will change that for you."
+    echo "Proceed? [y/N]"
+    readyesno enable_network_service
+    echo $enable_network_service | grep -qs '^[Yy]'
+    if [ $? = 0 ]; then
+        echo "I am changing that for you now."
+        systemctl start network.service 1>&4 2>&4
+        if [ "$?" != "0" ]; then
+          echo "====="
+          echo "[FATAL] Error starting network service"
+          echo ""
+          echo "Network service could not be started, check logs for details"
+          echo "(journalctl -u network.service)."
+          exit 12
+        fi
+        systemctl enable network.service 1>&4 2>&4
+        echo "Done."
+    else
+        echo "Stopped by user request."
+        exit 1
+    fi
+    echo ""
+else
+    echo "[Precheck] OK, network service is active"
+fi
+
+# Check to see if kvm is supported by the hardware.
+echo "[Precheck] Checking hardware virtualization"
+egrep '^flags.*(vmx|svm)' /proc/cpuinfo 1>&4 2>&4
+if [ "$?" != "0" ]; then
+    echo "====="
+    echo "[FATAL] Processor doesn't support virtualization"
+    echo ""
+    echo "Your processor doesn't appear to support virtualization."
+    echo "Eucalyptus requires virtualization to be enabled on your system."
+    echo "Please check your BIOS settings, or install Eucalyptus on a"
+    echo "system that supports virtualization."
+    echo ""
+    echo ""
+    exit 20
+fi
+echo "[Precheck] OK, processor supports virtualization"
+echo ""
+
+# Check to see if SELinux is set to Permissive.
+echo "[Precheck] Checking SELinux setting"
+grep ^SELINUX=enforcing /etc/selinux/config 1>&4 2>&4
+if [ "$?" = "0" ]; then
+    echo "====="
+    echo "WARNING: SELinux is Enforcing"
+    echo ""
+    echo "Your /etc/selinux/config file is set to 'enforcing'."
+    echo "Eucalyptus isn't ready for that yet, it can only handle Permissive mode."
+    echo ""
+    echo "Do you want me to switch SELinux from Enforcing to Permissive?"
+    echo "If you answer 'yes' I will change that for you."
+    echo "Note that this lowers the level of security."
+    echo "Proceed? [y/N]"
+    readyesno use_selinux_permissive_mode
+    echo $use_selinux_permissive_mode | grep -qs '^[Yy]'
+    if [ $? = 0 ]; then
+        echo "I am changing that for you now."
+        /usr/sbin/setenforce permissive
+        sed -i 's/^SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
+        echo "Done."
+    else
+        echo "Stopped by user request."
+        exit 1
+    fi
+    echo ""
+else
+    echo "[Precheck] OK, SELinux is Permissive"
+fi
+echo ""
+
+echo "[Precheck] Identifying primary network interface"
+
+# Get info about the primary network interface.
+# The goal is to walk through the likeliest primary interfaces,
+# and when we find an address, assume that we should be using
+# the addr, bcast, and mask data.
+#
+# active_nic identifies the nic that currently holds the active
+# primary connection that will be used to identify addr, bcast
+# and mask data.
+#
+# ciab_nic identifies the physical nic -- necessary when the
+# active_nic is br0 due to previous bridging attempts.
+
+ciab_nic_guess=""
+active_nic=""
+ciab_bridge_primary="0"
+
+primary_from_route=$(ip route | grep default | awk '{print $5}')
+if [ "$primary_from_route" != "" ]; then
+  echo ""
+  echo "Found network device: $primary_from_route"
+  echo ""
+  if [ "$primary_from_route" == "wlan0" ]; then
+    echo "====="
+    echo "[FATAL] Wireless install not supported!"
+    echo ""
+    echo "Your primary network interface appears to be a wireless interface."
+    echo "Faststart is intended for systems with a fixed ethernet connection and"
+    echo "a static IP address. Please reconfigure your system."
+    echo ""
+    echo "If you want to run a virtual version of Eucalyptus on a laptop,"
+    echo "consider trying eucadev instead:"
+    echo ""
+    echo "  https://github.com/eucalyptus/eucalyptus-cookbook/blob/master/eucadev.md"
+    echo ""
+    exit 23
+  elif [ "$primary_from_route" == "br0" ]; then
+    # This is a corner case: if br0 is the primary interface,
+    # it likely means that Eucalyptus has already been 
+    # installed and a bridge established. We still need to determine
+    # the physical bridge.
+    echo "Virtual network interface br0 found"
+    active_nic="br0"
+    if [ "$(ip link show em1 2>/dev/null)" ]; then
+        echo "Physical interface em1 found"
+        ciab_nic_guess="em1"
+        ciab_bridge_primary="1"
+    elif [ "$(ip link show eth0 2>/dev/null)" ]; then
+        echo "Physical interface eth0 found"
+        ciab_nic_guess="eth0"
+        ciab_bridge_primary="1"
+    elif [ "$(ip link show eno1 2>/dev/null)" ]; then
+        echo "Physical interface en01 found"
+        ciab_nic_guess="en01"
+        ciab_bridge_primary="1"
+    else
+        echo "====="
+        echo "[WARN] Could not determine physical ethernet interface to use for bridging br0"
+        echo ""
+        echo "No active ethernet interface was found. Please check your network configuration"
+        echo "and make sure that an ethernet interface is set up as your primary network"
+        echo "interface, and that it is connected to the internet."
+        echo ""
+        echo "It's possible that you're using a non-standard network interface (we expect"
+        echo "eth0, em1, or en01)."
+        echo ""
+    fi
+  else
+    echo "Active network interface $primary_from_route found"
+    ciab_nic_guess="$primary_from_route"
+    active_nic="$primary_from_route"
+  fi
+else
+  echo "====="
+  echo "[WARN] No active network interface found"
+  echo ""
+  echo "No active ethernet interface was found. Please check your network configuration"
+  echo "and make sure that an ethernet interface is set up as your primary network"
+  echo "interface, and that it's connected to the internet."
+  echo ""
+  echo "It's possible that you're using a non-standard network interface (we expect"
+  echo "eth0, em1, or en01)."
+  echo ""
+fi
+
+echo "[Precheck] OK, network interfaces checked."
+echo ""
+
+# Check to see if the primary network interface is configured to use DHCP.
+# If it is, warn and abort.
+grep -iE '=dhcp|=bootp'  /etc/sysconfig/network-scripts/ifcfg-$active_nic
+if [ "$?" == "0" ]; then
+    echo "====="
+    echo "WARNING: we recommend configuring Eucalypus servers to use"
+    echo "a static IP address. This system is configured to use DHCP,"
+    echo "which will cause problems if you lose the DHCP lease for this"
+    echo "system."
+    echo ""
+    echo "Continue anyway? [y/N]"
+    readyesno continue_dhcp
+    if [ "$continue_dhcp" = "n" ] || [ "$continue_dhcp" = "N" ] || [ -z "$continue_dhcp" ]
+    then 
+        echo "Stopped by user request."
+        exit 1
+    fi
+fi
+
+echo "[Precheck] Precheck successful."
+echo ""
+echo ""
+
+###############################################################################
+# SECTION 2: USER INPUT
+#
+###############################################################################
+
+# Attempt to prepopulate values
+if [ $(ip addr show $active_nic | grep "inet" | grep -v 'inet6' | wc -l) -gt 1 ]; then
+    echo ""
+    echo "We found too many IP addresses bound to $active_nic; this is unsupported!"
+    echo ""
+    echo "Please remove any IP addresses that may have been bound to this device, and re-run this script..."
+    exit 17
+fi
+ciab_ipaddr_guess=`ip addr show $active_nic | grep "inet" | grep -v 'inet6' | awk '{print $2}' | cut -d':' -f2 | cut -d'/' -f1`
+ciab_gateway_guess=`/sbin/ip route | awk '/default/ { print $3 }'`
+ciab_netmask_cidr=`ip addr show $active_nic | grep 'inet' | grep -v 'inet6' | awk '{print $2}' | cut -d':' -f2 | cut -d'/' -f2`
+
+if [ "$ciab_netmask_cidr" -eq 16 ]; then
+  ciab_netmask_guess="255.255.0.0"
+elif [ "$ciab_netmask_cidr" -eq 20 ]; then
+  ciab_netmask_guess="255.255.240.0"
+elif [ "$ciab_netmask_cidr" -eq 21 ]; then
+  ciab_netmask_guess="255.255.248.0"
+elif [ "$ciab_netmask_cidr" -eq 22 ]; then
+  ciab_netmask_guess="255.255.252.0"
+elif [ "$ciab_netmask_cidr" -eq 23 ]; then
+  ciab_netmask_guess="255.255.254.0"
+elif [ "$ciab_netmask_cidr" -eq 24 ]; then
+  ciab_netmask_guess="255.255.255.0"
+elif [ "$ciab_netmask_cidr" -eq 25 ]; then
+  ciab_netmask_guess="255.255.255.128"
+elif [ "$ciab_netmask_cidr" -eq 30 ]; then
+  ciab_netmask_guess="255.255.255.252"
+elif [ "$ciab_netmask_cidr" -eq 32 ]; then
+  ciab_netmask_guess="255.255.255.255"
+fi
+
+if [ "$ciab_netmask_guess" == "" ]; then
+    echo ""
+    echo "We cannot determine the NETMASK from the device $active_nic..."
+    echo ""
+    exit 19
+fi
+
+ciab_subnet_guess=`ipcalc -n $ciab_ipaddr_guess $ciab_netmask_guess | cut -d'=' -f2`
+ciab_ntp_guess=`gawk '/^server / {print $2}' /etc/chrony.conf | head -1`
+
+echo "====="
+echo ""
+echo "Welcome to the Faststart installer!"
+
+if [ "$nc_install_only" == "1" ]; 
+then
+    echo ""
+    echo "We're about to turn this system into a Eucalyptus node controller."
+    echo ""
+else
+    echo ""
+    echo "We're about to turn this system into a single-system Eucalyptus cloud."
+    echo ""
+fi
+echo "Note: it's STRONGLY suggested that you accept the default values where"
+echo "they are provided, unless you know that the values are incorrect."
+
+echo ""
+echo "What's the NTP server which we will update time from? ($ciab_ntp_guess)"
+readinput ciab_ntp
+[[ -z "$ciab_ntp" ]] && ciab_ntp=$ciab_ntp_guess
+echo "NTP="$ciab_ntp
+echo ""
+
+echo ""
+echo "What's the physical NIC that will be used for bridging? ($ciab_nic_guess)"
+readinput ciab_nic
+[[ -z "$ciab_nic" ]] && ciab_nic=$ciab_nic_guess
+echo "NIC="$ciab_nic
+echo ""
+
+echo "What's the IP address of this host? ($ciab_ipaddr_guess)"
+until valid_ip $ciab_ipaddr; do
+    readinput ciab_ipaddr
+    [[ -z "$ciab_ipaddr" ]] && ciab_ipaddr=$ciab_ipaddr_guess
+    valid_ip $ciab_ipaddr || inputerror "Please provide a valid IP."
+done
+echo "IPADDR="$ciab_ipaddr
+echo ""
+
+echo "Using $wildcard_dns for wildcard dns."
+/usr/bin/ping -c 1 $ciab_ipaddr.$wildcard_dns 1>&4 2>&4
+if [[ $? != 0 ]]; then
+    echo "Cannot resolve $ciab_ipaddr.$wildcard_dns!  We require network
+    connectivity to $wildcard_dns for FastStart service DNS resolution.
+    Please verify your network connectivity is functioning properly and attempt
+    your FastStart install again."
+    exit 1
+fi
+
+echo "What's the gateway for this host? ($ciab_gateway_guess)"
+until valid_ip $ciab_gateway; do
+    readinput ciab_gateway
+    [[ -z "$ciab_gateway" ]] && ciab_gateway=$ciab_gateway_guess
+    valid_ip $ciab_gateway || inputerror "Please provide a valid IP."
+done
+echo "GATEWAY="$ciab_gateway
+echo ""
+
+echo "What's the netmask for this host? ($ciab_netmask_guess)"
+until valid_ip $ciab_netmask; do
+    readinput ciab_netmask
+    [[ -z "$ciab_netmask" ]] && ciab_netmask=$ciab_netmask_guess
+    valid_ip $ciab_netmask || inputerror "Please provide a valid IP."
+done
+echo "NETMASK="$ciab_netmask
+echo ""
+
+echo "What's the subnet for this host? ($ciab_subnet_guess)"
+until valid_ip $ciab_subnet; do
+    readinput ciab_subnet
+    [[ -z "$ciab_subnet" ]] && ciab_subnet=$ciab_subnet_guess
+    valid_ip $ciab_subnet || inputerror "Please provide a valid IP."
+done
+echo "SUBNET="$ciab_subnet
+echo ""
+
+# We only ask certain questions for CIAB installs. Thus, if
+# we're only installing the NC, we'll skip the following questions.
+
+if [ "$nc_install_only" == "0" ]; then
+    echo "You must now specify a range of IP addresses that are free"
+    echo "for Eucalyptus to use.  These IP addresses should not be"
+    echo "taken up by any other machines, and should not be in any"
+    echo "DHCP address pools.  Faststart will split this range into"
+    echo "public and private IP addresses, which will then be used"
+    echo "by Eucalyptus instances.  Please specify a range of at least"
+    echo "10 IP addresses."
+    echo ""
+
+    ipsinrange=0
+
+    until (( $ipsinrange==1 )); do
+        echo "What's the first address of your available IP range?"
+        until valid_ip $ciab_ips1; do
+            readinput ciab_ips1
+            valid_ip $ciab_ips1 || inputerror "Please provide a valid IP."
+        done
+
+        echo "What's the last address of your available IP range?"
+        until valid_ip $ciab_ips2; do
+            readinput ciab_ips2
+            valid_ip $ciab_ips2 || inputerror "Please provide a valid IP."
+        done
+
+        ipsub1=$(echo $ciab_ips1 | cut -d'.' -f1-3)
+        ipsub2=$(echo $ciab_ips2 | cut -d'.' -f1-3)
+
+        if [ $ipsub1 == $ipsub2 ]; then
+            # OK, subnets match
+            iptail1=$(echo $ciab_ips1 | cut -d'.' -f4)
+            iptail2=$(echo $ciab_ips2 | cut -d'.' -f4)
+            if ! (("$iptail1+9" < "$iptail2")); then
+                inputerror "Please provide a range of at least 10 IP addresses, with the second IP greater than the first."
+            else
+                publicend=$(($iptail1+(($iptail2-$iptail1)/2)))
+                privatestart=$(($publicend+1))
+                ciab_publicips1="$ipsub1.$iptail1"
+                ciab_publicips2="$ipsub1.$publicend"
+                ciab_privateips1="$ipsub1.$privatestart"
+                ciab_privateips2="$ipsub1.$iptail2"
+                echo "OK, IP range is good"
+                echo "  Public range will be:   $ciab_publicips1 - $ciab_publicips2"
+                echo "  Private range will be   $ciab_privateips1 - $ciab_privateips2"
+                ipsinrange=1
+            fi
+        else
+            inputerror "Subnets for IP range don't match, try again."
+        fi
+
+    done
+
+    echo ""
+    echo "Do you wish to install the optional load balancer and image"
+    echo "management services? This add 10-15 minutes to the installation." 
+    echo "Install additional services? [Y/n]"
+    readyesno continue_services
+    if [ "$continue_services" = "n" ] || [ "$continue_services" = "N" ]
+    then 
+        echo "OK, additional services will not be installed."
+        ciab_extraservices="false"
+        echo ""
+    else
+        echo "OK, additional services will be installed."
+        ciab_extraservices="true"
+    fi
+fi
+
+###############################################################################
+# SECTION 3: PREP Chef Artifacts
+#
+###############################################################################
+
+# Check to see if chef-client is installed
+echo "[Chef] Checking if Chef Client is installed"
+which chef-client
+if [ "$?" != "0" ]; then
+    echo "====="
+    echo "[INFO] Chef not found. Installing Chef Client"
+    echo ""
+    echo ""
+    curl -L https://omnitruck.chef.io/install.sh | bash -s -- -P chefdk -v 2.5 1>&4 2>&4
+    if [ "$?" != "0" ]; then
+        echo "====="
+        echo "[FATAL] Chef install failed!"
+        echo ""
+        echo "Failed to install Chef. See $LOGFILE for details."
+        exit 22
+    fi
+fi
+echo "[Chef] OK, Chef Client is installed"
+echo ""
+
+echo "[Chef] Removing old Chef templates"
+# Get rid of old Chef stuff lying about.
+rm -rf /var/chef/* &>/dev/null
+
+echo "[Chef] Downloading necessary cookbooks from URL:"
+echo "$cookbooks_url"
+# Grab cookbooks from git
+yum install -y git 1>&4 2>&4
+if [ "$?" != "0" ]; then
+        echo "====="
+        echo "[FATAL] Failed to install git!"
+        echo ""
+        echo "Failed to install git. See $LOGFILE for details."
+        exit 25
+fi
+if [ -z "${cookbooks_url}" ] || [ "${cookbooks_url}" == "none" ] ; then
+  echo "[Chef] Running \"berks package\" to bundle all dependencies"
+  berks package cookbooks.tgz 1>&4 2>&4
+fi
+rm -rf cookbooks
+if [ ! -z "${cookbooks_url}" ] && [ "${cookbooks_url}" != "none" ] ; then
+    curl $cookbooks_url > cookbooks.tgz
+fi
+tar xzvf cookbooks.tgz 1>&4
+
+# Copy the templates to the local directory
+cp -f cookbooks/eucalyptus/faststart/ciab-template.json ciab.json
+cp -f cookbooks/eucalyptus/faststart/node-template.json node.json
+
+# Decide which template we're using.
+if [ "$nc_install_only" == "0" ]; then
+    chef_template="ciab.json"
+else
+    chef_template="node.json"
+fi
+
+# Perform variable interpolation in the proper template.
+sed -i "s/IPADDR/$ciab_ipaddr/g" $chef_template
+sed -i "s/NETMASK/$ciab_netmask/g" $chef_template
+sed -i "s/GATEWAY/$ciab_gateway/g" $chef_template
+sed -i "s/SUBNET/$ciab_subnet/g" $chef_template
+sed -i "s/PUBLICIPS1/$ciab_publicips1/g" $chef_template
+sed -i "s/PUBLICIPS2/$ciab_publicips2/g" $chef_template
+sed -i "s/PRIVATEIPS1/$ciab_privateips1/g" $chef_template
+sed -i "s/PRIVATEIPS2/$ciab_privateips2/g" $chef_template
+sed -i "s/EXTRASERVICES/$ciab_extraservices/g" $chef_template
+sed -i "s/NIC/$ciab_nic/g" $chef_template
+sed -i "s/NTP/$ciab_ntp/g" $chef_template
+sed -i "s/WILDCARD-DNS/$wildcard_dns/g" $chef_template
+
+if [ "$ciab_bridge_primary" -eq 1 ]; then
+    echo ""
+    echo "Binding Eucalyptus to device br0"
+    echo ""
+    sed -i "s/BINDINTERFACE/br0/g" $chef_template
+else
+    echo ""
+    echo "Binding Eucalyptus to device $ciab_nic"
+    echo ""
+    sed -i "s/BINDINTERFACE/$ciab_nic/g" $chef_template
+fi
+
+###############################################################################
+# SECTION 4: INSTALL EUCALYPTUS
+#
+###############################################################################
+
+# Install Euca and start it up in the cloud-in-a-box configuration.
+echo ""
+echo ""
+echo "[Installing Eucalyptus]"
+echo ""
+echo "If you want to watch the progress of this installation, you can check the"
+echo "log file by running the following command in another terminal:"
+echo ""
+echo "  tail -f $LOGFILE"
+
+if [ "$nc_install_only" == "0" ]; then
+    if [ "$ciab_extraservices" == "true" ]; then
+        echo ""
+        echo "Your cloud-in-a-box should be installed in 30-45 minutes. Go have a cup of tea!"
+        echo ""
+    else
+        echo ""
+        echo "Your cloud-in-a-box should be installed in 15-20 minutes. Go have a cup of tea!"
+        echo ""
+    fi
+else
+    echo ""
+    echo "Your node controller should be installed in a few minutes. Go have a cup of tea!"
+    echo ""
+fi
+
+# To make the spinner work, we need to launch in a subshell.  Since we 
+# can't get variables from the subshell scope, we'll write success or
+# failure to a file, and then succeed or fail based on whether the file
+# exists or not.
+
+rm -f faststart-successful*.log
+
+echo "[Yum Update] OK, running a full update of the OS. This could take a bit; please wait."
+echo ""
+echo "To see the update in progress, run the following command in another terminal:"
+echo ""
+echo "  tail -f $LOGFILE"
+echo ""
+echo "[Yum Update] Package update in progress..."
+(yum -y update && echo "Phase 0 success" > faststart-successful-phase0.log) 1>&4 2>&4 &
+tea $!
+
+if [[ ! -f faststart-successful-phase0.log ]]; then
+    echo "====="
+    echo "[FATAL] Yum update failed!"
+    echo ""
+    echo "Failed to do a full update of the OS. See $LOGFILE for details. /var/log/yum.log"
+    echo "may also have some details related to the same."
+    exit 24
+fi
+echo "[Yum Update] Full update of the OS completed."
+
+#
+# OK, THIS IS THE BIG STEP!  Install whichever chef template we're going with here.
+# On successful exit, write "success" to faststart-successful*.log.
+
+if [ "$nc_install_only" -eq 0 ]; then
+  # add only the cloud-controller recipe to the run_list
+  runlistitems="eucalyptus::cloud-controller"
+fi
+
+curdir=`pwd`
+jsonpath="$curdir/$chef_template"
+# Execute phase 1 which adds only the cloud-controller recipe to the run_list
+(chef-client --no-color --local-mode \
+             --runlist cookbooks.tgz \
+             --json-attributes "$jsonpath" \
+             --log_level $chef_log_level \
+             --override-runlist $runlistitems \
+ && echo "Phase 1 success" > faststart-successful-phase1.log) 1>&4 2>&4 &
+
+echo ""
+echo "Phase 0 (OS) completed successfully...getting a 2nd cup of tea and moving on to phase 1 (CLC)."
+tea $!
+
+if [[ ! -f faststart-successful-phase1.log ]]; then
+    echo "[FATAL] Eucalyptus installation failed"
+    echo ""
+    echo "Eucalyptus installation failed. Please consult $LOGFILE for details."
+    echo ""
+    echo "Please try to run the installation again. If your installation fails again,"
+    echo "you can ask the Eucalyptus community for assistance:"
+    echo ""
+    echo "https://groups.google.com/a/eucalyptus.com/forum/#!forum/euca-users"
+    echo ""
+    echo "Or find us on IRC at irc.freenode.net, on the #eucalyptus channel."
+    echo ""
+    exit 99
+  else
+    echo "Phase 1 (CLC) completed successfully...getting a 3rd cup of tea and moving on to phase 2 (main cloud components)."
+fi
+
+# Add all other recipes to the run_list and execute phase 2
+if [ "$nc_install_only" -eq 0 ]; then
+  runlistitems=""
+  runlistitems="eucalyptus::user-console"
+  runlistitems="$runlistitems,eucalyptus::register-components"
+  runlistitems="$runlistitems,eucalyptus::walrus"
+  runlistitems="$runlistitems,eucalyptus::cluster-controller"
+  runlistitems="$runlistitems,eucalyptus::storage-controller"
+  runlistitems="$runlistitems,eucalyptus::node-controller"
+  runlistitems="$runlistitems,eucalyptus::configure"
+fi
+
+(chef-client --no-color --local-mode \
+             --runlist cookbooks.tgz \
+             --json-attributes "$jsonpath" \
+             --log_level $chef_log_level \
+             --override-runlist "$runlistitems" \
+ && echo "Phase 2 success" > faststart-successful-phase2.log) 1>&4 2>&4 &
+tea $!
+
+if [[ ! -f faststart-successful-phase2.log ]]; then
+    echo "[FATAL] Eucalyptus installation failed"
+    echo ""
+    echo "Eucalyptus installation failed. Please consult $LOGFILE for details."
+    echo ""
+    echo "Please try to run the installation again. If your installation fails again,"
+    echo "you can ask the Eucalyptus community for assistance:"
+    echo ""
+    echo "https://groups.google.com/a/eucalyptus.com/forum/#!forum/euca-users"
+    echo ""
+    echo "Or find us on IRC at irc.freenode.net, on the #eucalyptus channel."
+    echo ""
+    exit 99
+  else
+    echo "Phase 2 completed successfully...yes, in fact having that final cup of tea and moving on to phase 3 (create first resources)."
+fi
+
+# add create first resources as a last item
+if [ "$nc_install_only" -eq 0 ]; then
+  runlistitems=""
+  runlistitems="eucalyptus::create-first-resources"
+fi
+
+(chef-client --no-color --local-mode \
+             --runlist cookbooks.tgz \
+             --json-attributes "$jsonpath" \
+             --log_level $chef_log_level \
+             --override-runlist $runlistitems \
+ && echo "Phase 3 success" > faststart-successful-phase3.log) 1>&4 2>&4 &
+tea $!
+
+if [[ ! -f faststart-successful-phase3.log ]]; then
+    echo "[FATAL] Eucalyptus installation failed"
+    echo ""
+    echo "Eucalyptus installation failed. Please consult $LOGFILE for details."
+    echo ""
+    echo "Please try to run the installation again. If your installation fails again,"
+    echo "you can ask the Eucalyptus community for assistance:"
+    echo ""
+    echo "https://groups.google.com/a/eucalyptus.com/forum/#!forum/euca-users"
+    echo ""
+    echo "Or find us on IRC at irc.freenode.net, on the #eucalyptus channel."
+    echo ""
+    exit 99
+  else
+    echo "Phase 3 completed successfully."
+fi
+
+
+
+###############################################################################
+# SECTION 5: POST-INSTALL CONFIGURATION
+#
+# If we reach this section, install has been successful. Take two different
+# paths: one for the NC mode, another for the CIAB mode.
+###############################################################################
+
+if [ "$nc_install_only" == "0" ]; then
+
+#
+# FINISH CLOUD-IN-A-BOX INSTALL
+#
+
+    echo ""
+    echo "[Config] Generating credentials"
+
+    echo ""
+    echo "[Config] Enabling web console"
+    euare-useraddloginprofile --as-account eucalyptus -u admin -p password
+
+    echo "[Config] Adding ssh and http to default security group"
+    euca-authorize -P tcp -p 22 default
+    euca-authorize -P tcp -p 80 default
+
+    echo ""
+    echo ""
+    echo "[SUCCESS] Eucalyptus installation complete!"
+    total_time=$(timer $t)
+    printf 'Time to install: %s\n' $total_time
+
+    # Add links to the /etc/motd file
+    tutorial_path=`pwd`
+    cat << EOF > /etc/motd
+
+ _______                   _
+(_______)                 | |             _
+ _____   _   _  ____ _____| |_   _ ____ _| |_ _   _  ___
+|  ___) | | | |/ ___|____ | | | | |  _ (_   _) | | |/___)
+| |_____| |_| ( (___/ ___ | | |_| | |_| || |_| |_| |___ |
+|_______)____/ \____)_____|\_)__  |  __/  \__)____/(___/
+                            (____/|_|
+
+To log in to the Management Console, go to:
+https://${ciab_ipaddr}/
+
+Default User Credentials (unless changed):
+  * Account: eucalyptus
+  * Username: admin
+  * Password: password
+
+Eucalyptus CLI Tutorials can be found at:
+
+  $tutorial_path/cookbooks/eucalyptus/faststart/tutorials
+
+EOF
+
+    echo "To log in to the Management Console, go to:"
+    echo "https://${ciab_ipaddr}/"
+    echo ""
+    echo "User Credentials:"
+    echo "  * Account: eucalyptus"
+    echo "  * Username: admin"
+    echo "  * Password: password"
+    echo ""
+
+    echo "If you are new to Eucalyptus, we strongly recommend that you run"
+    echo "the Eucalyptus tutorial now:"
+    echo ""
+    echo "  cd $tutorial_path/cookbooks/eucalyptus/faststart/tutorials"
+    echo "  ./master-tutorial.sh"
+    echo ""
+    echo "Thanks for installing Eucalyptus!"
+
+else
+#
+# NODE CONTROLLER INSTALL SUCCESSFUL
+#
+    echo ""
+    echo ""
+    echo "[SUCCESS] Eucalyptus node controller installation complete!"
+    total_time=$(timer $t)
+    printf 'Time to install: %s\n' $total_time
+    echo ""
+    echo "Now, to register your node controller with your cloud, ssh to your"
+    echo "cloud-in-a-box server and run the following command:"
+    echo ""
+    echo "  clusteradmin-register-nodes ${ciab_ipaddr}"
+    echo ""
+    echo "Finally copy keys to the node controller from the cloud-in-a-box server:"
+    echo "  clusteradmin-copy-keys ${ciab_ipaddr}"
+    echo ""
+    echo "Thanks for installing Eucalyptus!"
+
+fi
+
+exit 0
+
+} # end function faststart
+
+faststart_init "$@"
+exec 3>&1
+exec 4>"${LOGFILE}"
+if [ $batch_mode -eq 1 ] ; then
+  faststart <&0- 2>&1 | tee /dev/fd/4  # no stdin
+else
+  faststart | tee /dev/fd/4
+fi
+
