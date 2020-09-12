@@ -1,0 +1,26 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: centos-6.5
+    driver_config:
+      box: chef/centos-6.5
+      network:
+      - ["forwarded_port", {guest: 8080, host: 8080}]
+      customize:
+        cpus: 2
+        memory: 3024
+        cpuexecutioncap: 100
+
+suites:
+  - name: default
+    run_list:
+      - recipe[midokura]
+    attributes:
+      midokura:
+        midolman-host-mapping:
+          'default-centos-65.vagrantup.com': '10.0.2.15'

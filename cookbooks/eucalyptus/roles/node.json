@@ -1,0 +1,9 @@
+{
+  "name": "node",
+  "description": "Node controller installation",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "run_list": [
+    "recipe[eucalyptus::node-controller]"
+  ]
+}

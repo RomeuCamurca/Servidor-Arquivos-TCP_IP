@@ -1,0 +1,43 @@
+{
+  "name": "ceph-cluster",
+  "description": "Installs/Configures ceph-cluster",
+  "long_description": "ceph-cluster Cookbook\n=====================\n\nceph-cluster cookbook for RHEL/CentOS.\n\n\nRequirements\n------------\nUse with Calyptos: https://github.com/eucalyptus/calyptos\n\n\nContributing\n------------\nTODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.\n\ne.g.\n1. Fork the repository on Github\n2. Create a named feature branch (like `add_component_x`)\n3. Write your change\n4. Write tests for your change (if applicable)\n5. Run the tests, ensuring they all pass\n6. Submit a Pull Request using Github\n\nLicense and Authors\n-------------------\n* Imran Hossain Shaon (mdshaonimran@gmail.com)\n* Vic Iglesias (viglesiasce@gmail.com)\n",
+  "maintainer": "Imran Hossain Shaon",
+  "maintainer_email": "imran.hossain@hpe.com",
+  "license": "All rights reserved",
+  "platforms": {
+  },
+  "dependencies": {
+    "yum": ">= 0.0.0",
+    "ntp": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.2.0",
+  "source_url": "",
+  "issues_url": "",
+  "privacy": false,
+  "chef_versions": [
+
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}

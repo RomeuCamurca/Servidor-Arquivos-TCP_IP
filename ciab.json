@@ -1,0 +1,52 @@
+{
+    "eucalyptus": {
+      "yum-options": "",
+      "cloud-properties": {
+          "authentication.access_keys_limit": 10,
+          "authentication.signing_certificates_limit": 10
+      },
+      "eucalyptus-repo": "http://downloads.eucalyptus.cloud/software/eucalyptus/4.4/rhel/7/x86_64/",
+      "euca2ools-repo": "http://downloads.eucalyptus.cloud/software/euca2ools/3.4/rhel/7/x86_64/",
+      "install-service-image": false,
+      "ntp-server": "",
+      "dns-domain": "172.16.26.130.nip.io",
+      "set-bind-addr": true,
+      "bind-interface": "ens33",
+      "topology": {
+        "clc": ["172.16.26.130"],
+        "user-facing": ["172.16.26.130"],
+        "clusters": {
+          "default": {
+            "cc": ["172.16.26.130"],
+            "sc": ["172.16.26.130"],
+            "nodes": ["172.16.26.130"],
+            "storage-backend": "overlay"
+          }
+        },
+        "objectstorage": {
+          "providerclient": "walrus",
+          "walrusbackend": ["172.16.26.130"]
+          }
+      },
+      "sync-keys": true,
+      "network": {
+        "mode": "EDGE",
+        "public-interface": "br0",
+        "private-interface": "br0",
+        "bridged-nic":"ens33",
+        "bridge-ip": "172.16.26.130",
+        "bridge-netmask": "255.255.255.0",
+        "bridge-gateway": "172.16.26.2",
+        "InstanceDnsServers": ["172.16.26.130"],
+        "PublicIps": ["172.16.26.3-172.16.26.51"],
+        "PrivateIps": ["172.16.26.52-172.16.26.100"],
+        "subnets": [
+          {
+              "Subnet": "172.16.26.0",
+              "Netmask": "255.255.255.0",
+              "Gateway": "172.16.26.2"
+          }
+        ]
+      }
+    }
+}

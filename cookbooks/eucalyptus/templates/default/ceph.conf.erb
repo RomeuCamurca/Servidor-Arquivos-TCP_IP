@@ -1,0 +1,21 @@
+<% if @cephConfig-%>
+  <% @cephConfig.each do |section, config_value| -%>
+[<%= section %>]
+    <% config_value.each do |key, value| -%>
+  <%= key %> = <%= value %>
+    <% end %>
+  <% end %>
+<% end -%>
+<% if @cephRadosGW -%>
+[<%= @cephRadosGW['name'] %>]
+  host = <%= node['hostname'] %>
+  <% if @cephRadosGW['keyring'] -%>
+  keyring = <%= @cephRadosGW['keyring'] %>
+  <% end %>
+  <% if @cephRadosGW['log file'] -%>
+  log file = <%= @cephRadosGW['log file'] %>
+  <% end %>
+  <% if @cephRadosGW['rgw frontends'] -%>
+  rgw frontends = "<%= @cephRadosGW['rgw frontends'] %>"
+  <% end %>
+<% end %>

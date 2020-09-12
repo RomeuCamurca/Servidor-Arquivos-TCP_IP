@@ -1,0 +1,37 @@
+{
+  "name": "riak-cs-ssl",
+  "description": "Installs and configures Riak CS with SSL certificates",
+  "long_description": "",
+  "maintainer": "Basho Technologies, Inc.",
+  "maintainer_email": "riak@basho.com",
+  "license": "Apache 2.0",
+  "platforms": {
+    "ubuntu": ">= 0.0.0",
+    "debian": ">= 0.0.0",
+    "centos": ">= 0.0.0",
+    "redhat": ">= 0.0.0",
+    "fedora": ">= 0.0.0"
+  },
+  "dependencies": {
+    "riak-cs": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.2.1",
+  "source_url": "",
+  "issues_url": ""
+}

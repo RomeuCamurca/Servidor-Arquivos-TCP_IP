@@ -1,0 +1,1840 @@
+CentOS Linux release 7.8.2003 (Core)
+active
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc eagerfpu pni pclmulqdq vmx ssse3 cx16 sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes hypervisor lahf_lm ssbd ibrs ibpb stibp tpr_shadow vnmi ept vpid tsc_adjust arat spec_ctrl intel_stibp flush_l1d arch_capabilities
+SELINUX=enforcing
+PING 172.16.26.130.nip.io (172.16.26.130) 56(84) bytes of data.
+64 bytes from minty (172.16.26.130): icmp_seq=1 ttl=64 time=0.079 ms
+
+--- 172.16.26.130.nip.io ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.079/0.079/0.079/0.000 ms
+el 7 x86_64
+Getting information for chefdk stable 2.5 for el...
+downloading https://omnitruck.chef.io/stable/chefdk/metadata?v=2.5&p=el&pv=7&m=x86_64
+  to file /tmp/install.sh.1369/metadata.txt
+trying curl...
+sha1	3779e76b03644f54d3b55483d47583f7108b25fc
+sha256	f173ae48f46bdc307f5198129df0aace90c211fc22bc3ca39d15a6495cb8712f
+url	https://packages.chef.io/files/stable/chefdk/2.5.13/el/7/chefdk-2.5.13-1.el7.x86_64.rpm
+version	2.5.13
+downloaded metadata file looks valid...
+downloading https://packages.chef.io/files/stable/chefdk/2.5.13/el/7/chefdk-2.5.13-1.el7.x86_64.rpm
+  to file /tmp/install.sh.1369/chefdk-2.5.13-1.el7.x86_64.rpm
+trying curl...
+trying perl...
+trying python...
+Comparing checksum with sha256sum...
+Installing chefdk 2.5
+installing with rpm...
+warning: /tmp/install.sh.1369/chefdk-2.5.13-1.el7.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 83ef826a: NOKEY
+Preparing...                          ########################################
+Updating / installing...
+chefdk-2.5.13-1.el7                   ########################################
+Thank you for installing Chef Development Kit!
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.globo.com
+ * extras: mirror.globo.com
+ * updates: mirror.globo.com
+Package git-1.8.3.1-23.el7_8.x86_64 already installed and latest version
+Nothing to do
+.
+cookbooks
+cookbooks/apt
+cookbooks/apt/CHANGELOG.md
+cookbooks/apt/README.md
+cookbooks/apt/attributes
+cookbooks/apt/attributes/default.rb
+cookbooks/apt/files
+cookbooks/apt/files/default
+cookbooks/apt/files/default/apt-proxy-v2.conf
+cookbooks/apt/libraries
+cookbooks/apt/libraries/helpers.rb
+cookbooks/apt/libraries/matchers.rb
+cookbooks/apt/libraries/network.rb
+cookbooks/apt/metadata.json
+cookbooks/apt/providers
+cookbooks/apt/providers/preference.rb
+cookbooks/apt/providers/repository.rb
+cookbooks/apt/recipes
+cookbooks/apt/recipes/cacher-client.rb
+cookbooks/apt/recipes/cacher-ng.rb
+cookbooks/apt/recipes/default.rb
+cookbooks/apt/resources
+cookbooks/apt/resources/preference.rb
+cookbooks/apt/resources/repository.rb
+cookbooks/apt/templates
+cookbooks/apt/templates/debian-6.0
+cookbooks/apt/templates/debian-6.0/acng.conf.erb
+cookbooks/apt/templates/default
+cookbooks/apt/templates/default/01proxy.erb
+cookbooks/apt/templates/default/acng.conf.erb
+cookbooks/apt/templates/ubuntu-10.04
+cookbooks/apt/templates/ubuntu-10.04/acng.conf.erb
+cookbooks/build-essential
+cookbooks/build-essential/CHANGELOG.md
+cookbooks/build-essential/README.md
+cookbooks/build-essential/attributes
+cookbooks/build-essential/attributes/default.rb
+cookbooks/build-essential/libraries
+cookbooks/build-essential/libraries/matchers.rb
+cookbooks/build-essential/libraries/timing.rb
+cookbooks/build-essential/libraries/xcode_command_line_tools.rb
+cookbooks/build-essential/metadata.json
+cookbooks/build-essential/recipes
+cookbooks/build-essential/recipes/_debian.rb
+cookbooks/build-essential/recipes/_fedora.rb
+cookbooks/build-essential/recipes/_freebsd.rb
+cookbooks/build-essential/recipes/_mac_os_x.rb
+cookbooks/build-essential/recipes/_omnios.rb
+cookbooks/build-essential/recipes/_rhel.rb
+cookbooks/build-essential/recipe
+Binding Eucalyptus to device ens33
+
+
+
+[Installing Eucalyptus]
+
+If you want to watch the progress of this installation, you can check the
+log file by running the following command in another terminal:
+
+  tail -f /var/log/euca-install-09.11.2020-19.36.35.log
+
+Your cloud-in-a-box should be installed in 15-20 minutes. Go have a cup of tea!
+
+[Yum Update] OK, running a full update of the OS. This could take a bit; please wait.
+
+To see the update in progress, run the following command in another terminal:
+
+  tail -f /var/log/euca-install-09.11.2020-19.36.35.log
+
+[Yum Update] Package update in progress...
+[Yum Update] Full update of the OS completed.
+
+Phase 0 (OS) completed successfully...getting a 2nd cup of tea and moving on to phase 1 (CLC).
+Phase 1 (CLC) completed successfully...getting a 3rd cup of tea and moving on to phase 2 (main cloud components).
+[FATAL] Eucalyptus installation failed
+
+Eucalyptus installation failed. Please consult /var/log/euca-install-09.11.2020-19.36.35.log for details.
+
+Please try to run the installation again. If your installation fails again,
+you can ask the Eucalyptus community for assistance:
+
+https://groups.google.com/a/eucalyptus.com/forum/#!forum/euca-users
+
+Or find us on IRC at irc.freenode.net, on the #eucalyptus channel.
+
+sd.rb
+cookbooks/ceph-cluster/recipes/user.rb
+cookbooks/ceph-cluster/resources
+cookbooks/ceph-cluster/resources/builder.rb
+cookbooks/ceph-cluster/resources/user.rb
+cookbooks/ceph-cluster/templates
+cookbooks/ceph-cluster/templates/default
+cookbooks/ceph-cluster/templates/default/ceph.client.admin.keyring.erb
+cookbooks/ceph-cluster/templates/default/ceph.conf.erb
+cookbooks/dmg
+cookbooks/dmg/CHANGELOG.md
+cookbooks/dmg/CONTRIBUTING.md
+cookbooks/dmg/README.md
+cookbooks/dmg/metadata.json
+cookbooks/dmg/recipes
+cookbooks/dmg/recipes/default.rb
+cookbooks/dmg/resources
+cookbooks/dmg/resources/package.rb
+cookbooks/erlang
+cookbooks/erlang/CHANGELOG.md
+cookbooks/erlang/README.md
+cookbooks/erlang/attributes
+cookbooks/erlang/attributes/default.rb
+cookbooks/erlang/metadata.json
+cookbooks/erlang/recipes
+cookbooks/erlang/recipes/default.rb
+cookbooks/erlang/recipes/esl.rb
+cookbooks/erlang/recipes/package.rb
+cookbooks/erlang/recipes/source.rb
+cookbooks/eucalyptus
+cookbooks/eucalyptus/.kitchen.yml
+cookbooks/eucalyptus/LICENSE
+cookbooks/eucalyptus/README.md
+cookbooks/eucalyptus/attributes
+cookbooks/eucalyptus/attributes/default.rb
+cookbooks/eucalyptus/bootstrap.json
+cookbooks/eucalyptus/bootstrap_ceph.json
+cookbooks/eucalyptus/bootstrap_riakcs.json
+cookbooks/eucalyptus/chefignore
+cookbooks/eucalyptus/environments
+cookbooks/eucalyptus/environments/edge-nightly.json
+cookbooks/eucalyptus/environments/eucalyptus-ceph.json
+cookbooks/eucalyptus/environments/eucalyptus-default.json
+cookbooks/eucalyptus/eucadev
+cookbooks/eucalyptus/eucadev/post.sh
+cookbooks/eucalyptus/eucadev/prep.sh
+cookbooks/eucalyptus/eucadev.md
+cookbooks/eucalyptus/faststart
+cookbooks/eucalyptus/faststart/HOWTO.txt
+cookbooks/eucalyptus/faststart/README
+cookbooks/eucalyptus/faststart/ciab-template.json
+cookbooks/eucalyptus/faststart/cloud-in-a-box.sh
+cookbooks/eucalyptus/faststart/faststart-logger.priv
+cookbooks/eucalyptus/faststart/get-started.txt
+cookbooks/eucalyptus/faststart/install-emis
+cookbooks/eucalyptus/faststart/install-emis/install-emis.py
+cookbooks/eucalyptus/faststart/install-emis/install-emis.sh
+cookbooks/eucalyptus/faststart/install-nc.sh
+cookbooks/eucalyptus/faststart/new-nuke.sh
+cookbooks/eucalyptus/faststart/node-template.json
+cookbooks/eucalyptus/faststart/nuke.json
+cookbooks/eucalyptus/faststart/nuke.sh
+cookbooks/eucalyptus/faststart/simple-cloud-in-a-box.sh
+cookbooks/eucalyptus/faststart/tutorials
+cookbooks/eucalyptus/faststart/tutorials/README.txt
+cookbooks/eucalyptus/faststart/tutorials/describe-images.sh
+cookbooks/eucalyptus/faststart/tutorials/install-image.sh
+cookbooks/eucalyptus/faststart/tutorials/launch-instances.sh
+cookbooks/eucalyptus/faststart/tutorials/master-tutorial.sh
+cookbooks/eucalyptus/libraries
+cookbooks/eucalyptus/libraries/bind-addr.rb
+cookbooks/eucalyptus/libraries/ceph.rb
+cookbooks/eucalyptus/libraries/create_riakcs_user.rb
+cookbooks/eucalyptus/libraries/enterprise.rb
+cookbooks/eucalyptus/libraries/eucalyptus_helper.rb
+cookbooks/eucalyptus/libraries/key-sync.rb
+cookbooks/eucalyptus/libraries/midonet.rb
+cookbooks/eucalyptus/metadata.json
+cookbooks/eucalyptus/motherbrain.rb
+cookbooks/eucalyptus/recipes
+cookbooks/eucalyptus/recipes/chef-metal.rb
+cookbooks/eucalyptus/recipes/cloud-controller.rb
+cookbooks/eucalyptus/recipes/cloud-service.rb
+cookbooks/eucalyptus/recipes/cluster-controller.rb
+cookbooks/eucalyptus/recipes/configure-vpc.rb
+cookbooks/eucalyptus/recipes/configure.rb
+cookbooks/eucalyptus/recipes/create-first-resources.rb
+cookbooks/eucalyptus/recipes/default.rb
+cookbooks/eucalyptus/recipes/eucanetd.rb
+cookbooks/eucalyptus/recipes/eutester.rb
+cookbooks/eucalyptus/recipes/install-source.rb
+cookbooks/eucalyptus/recipes/midokura-repo.rb
+cookbooks/eucalyptus/recipes/midolman-nuke.rb
+cookbooks/eucalyptus/recipes/midolman.rb
+cookbooks/eucalyptus/recipes/midonet-cluster.rb
+cookbooks/eucalyptus/recipes/midonet-nuke.rb
+cookbooks/eucalyptus/recipes/node-controller.rb
+cookbooks/eucalyptus/recipes/nuke.rb
+cookbooks/eucalyptus/recipes/register-components.rb
+cookbooks/eucalyptus/recipes/setupcreds.rb
+cookbooks/eucalyptus/recipes/storage-controller.rb
+cookbooks/eucalyptus/recipes/user-console.rb
+cookbooks/eucalyptus/recipes/user-facing.rb
+cookbooks/eucalyptus/recipes/walrus.rb
+cookbooks/eucalyptus/roles
+cookbooks/eucalyptus/roles/cloud-in-a-box.json
+cookbooks/eucalyptus/roles/cluster.json
+cookbooks/eucalyptus/roles/endpoints.json
+cookbooks/eucalyptus/roles/frontend.json
+cookbooks/eucalyptus/roles/node.json
+cookbooks/eucalyptus/templates
+cookbooks/eucalyptus/templates/default
+cookbooks/eucalyptus/templates/default/ceph.conf.erb
+cookbooks/eucalyptus/templates/default/client-keyring.erb
+cookbooks/eucalyptus/templates/default/eucalyptus.conf.erb
+cookbooks/eucalyptus/templates/default/ifcfg-br-dhcp-vpcmido.erb
+cookbooks/eucalyptus/templates/default/ifcfg-br-dhcp.erb
+cookbooks/eucalyptus/templates/default/ifcfg-br-static-vpcmido.erb
+cookbooks/eucalyptus/templates/default/ifcfg-br-static.erb
+cookbooks/eucalyptus/templates/default/ifcfg-eth.erb
+cookbooks/eucalyptus/templates/default/midolman.conf.erb
+cookbooks/eucalyptus/templates/default/midonet.conf.erb
+cookbooks/eucalyptus/templates/default/network-edge.json.erb
+cookbooks/eucalyptus/templates/default/network-vpc.json.erb
+cookbooks/eucalyptus/test
+cookbooks/eucalyptus/test/integration
+cookbooks/eucalyptus/test/integration/ciab
+cookbooks/eucalyptus/test/integration/ciab/serverspec
+cookbooks/eucalyptus/test/integration/ciab/serverspec/ciab_spec.rb
+cookbooks/git
+cookbooks/git/CHANGELOG.md
+cookbooks/git/README.md
+cookbooks/git/attributes
+cookbooks/git/attributes/default.rb
+cookbooks/git/metadata.json
+cookbooks/git/providers
+cookbooks/git/providers/config.rb
+cookbooks/git/recipes
+cookbooks/git/recipes/default.rb
+cookbooks/git/recipes/server.rb
+cookbooks/git/recipes/source.rb
+cookbooks/git/recipes/windows.rb
+cookbooks/git/resources
+cookbooks/git/resources/config.rb
+cookbooks/git/templates
+cookbooks/git/templates/default
+cookbooks/git/templates/default/git-xinetd.d.erb
+cookbooks/git/templates/default/sv-git-daemon-log-run.erb
+cookbooks/git/templates/default/sv-git-daemon-run.erb
+cookbooks/haproxy
+cookbooks/haproxy/.gitignore
+cookbooks/haproxy/CHANGELOG.md
+cookbooks/haproxy/LICENSE
+cookbooks/haproxy/README.md
+cookbooks/haproxy/attributes
+cookbooks/haproxy/attributes/default.rb
+cookbooks/haproxy/metadata.json
+cookbooks/haproxy/recipes
+cookbooks/haproxy/recipes/default.rb
+cookbooks/haproxy/recipes/nuke.rb
+cookbooks/haproxy/templates
+cookbooks/haproxy/templates/default
+cookbooks/haproxy/templates/default/haproxy.cfg.erb
+cookbooks/homebrew
+cookbooks/homebrew/CHANGELOG.md
+cookbooks/homebrew/CONTRIBUTING.md
+cookbooks/homebrew/README.md
+cookbooks/homebrew/attributes
+cookbooks/homebrew/attributes/default.rb
+cookbooks/homebrew/libraries
+cookbooks/homebrew/libraries/helpers.rb
+cookbooks/homebrew/metadata.json
+cookbooks/homebrew/recipes
+cookbooks/homebrew/recipes/cask.rb
+cookbooks/homebrew/recipes/default.rb
+cookbooks/homebrew/recipes/install_casks.rb
+cookbooks/homebrew/recipes/install_formulas.rb
+cookbooks/homebrew/recipes/install_taps.rb
+cookbooks/homebrew/resources
+cookbooks/homebrew/resources/cask.rb
+cookbooks/homebrew/resources/tap.rb
+cookbooks/iptables
+cookbooks/iptables/CHANGELOG.md
+cookbooks/iptables/README.md
+cookbooks/iptables/metadata.json
+cookbooks/iptables/providers
+cookbooks/iptables/providers/rule.rb
+cookbooks/iptables/recipes
+cookbooks/iptables/recipes/default.rb
+cookbooks/iptables/recipes/disabled.rb
+cookbooks/iptables/resources
+cookbooks/iptables/resources/rule.rb
+cookbooks/iptables/templates
+cookbooks/iptables/templates/default
+cookbooks/iptables/templates/default/iptables_load.erb
+cookbooks/iptables/templates/default/rebuild-iptables.erb
+cookbooks/java
+cookbooks/java/CHANGELOG.md
+cookbooks/java/CONTRIBUTING.md
+cookbooks/java/README.md
+cookbooks/java/attributes
+cookbooks/java/attributes/default.rb
+cookbooks/java/libraries
+cookbooks/java/libraries/helpers.rb
+cookbooks/java/metadata.json
+cookbooks/java/recipes
+cookbooks/java/recipes/default.rb
+cookbooks/java/recipes/default_java_symlink.rb
+cookbooks/java/recipes/homebrew.rb
+cookbooks/java/recipes/ibm.rb
+cookbooks/java/recipes/ibm_tar.rb
+cookbooks/java/recipes/notify.rb
+cookbooks/java/recipes/openjdk.rb
+cookbooks/java/recipes/oracle.rb
+cookbooks/java/recipes/oracle_i386.rb
+cookbooks/java/recipes/oracle_jce.rb
+cookbooks/java/recipes/oracle_rpm.rb
+cookbooks/java/recipes/purge_packages.rb
+cookbooks/java/recipes/set_attributes_from_version.rb
+cookbooks/java/recipes/set_java_home.rb
+cookbooks/java/recipes/windows.rb
+cookbooks/java/resources
+cookbooks/java/resources/alternatives.rb
+cookbooks/java/resources/certificate.rb
+cookbooks/java/resources/oracle_install.rb
+cookbooks/java/templates
+cookbooks/java/templates/ibm_jdk.installer.properties.erb
+cookbooks/java/templates/jdk.sh.erb
+cookbooks/java/templates/oracle.jinfo.erb
+cookbooks/midokura
+cookbooks/midokura/.kitchen.yml
+cookbooks/midokura/LICENSE
+cookbooks/midokura/README.md
+cookbooks/midokura/attributes
+cookbooks/midokura/attributes/default.rb
+cookbooks/midokura/chefignore
+cookbooks/midokura/metadata.json
+cookbooks/midokura/recipes
+cookbooks/midokura/recipes/_common.rb
+cookbooks/midokura/recipes/cassandra.rb
+cookbooks/midokura/recipes/create-first-resources.rb
+cookbooks/midokura/recipes/default.rb
+cookbooks/midokura/recipes/midolman.rb
+cookbooks/midokura/recipes/midonet-api.rb
+cookbooks/midokura/recipes/midonet-cp.rb
+cookbooks/midokura/recipes/nuke.rb
+cookbooks/midokura/recipes/zookeeper.rb
+cookbooks/midokura/templates
+cookbooks/midokura/templates/default
+cookbooks/midokura/templates/default/logback.xml.erb
+cookbooks/midokura/templates/default/midokura.repo.erb
+cookbooks/midokura/templates/default/midolman.init.erb
+cookbooks/midokura/templates/default/midonet-cp.js.erb
+cookbooks/midokura/templates/default/myid.erb
+cookbooks/midokura/templates/default/web.xml.erb
+cookbooks/midokura/templates/default/zoo.cfg.erb
+cookbooks/midokura/templates/default/zookeeper-env.sh.erb
+cookbooks/midokura/test
+cookbooks/midokura/test/integration
+cookbooks/midokura/test/integration/default
+cookbooks/midokura/test/integration/default/serverspec
+cookbooks/midokura/test/integration/default/serverspec/default_spec.rb
+cookbooks/ntp
+cookbooks/ntp/CHANGELOG.md
+cookbooks/ntp/CONTRIBUTING.md
+cookbooks/ntp/README.md
+cookbooks/ntp/attributes
+cookbooks/ntp/attributes/default.rb
+cookbooks/ntp/files
+cookbooks/ntp/files/ntp.ini
+cookbooks/ntp/files/ntp.leapseconds
+cookbooks/ntp/files/usr.sbin.ntpd.apparmor
+cookbooks/ntp/libraries
+cookbooks/ntp/libraries/ntp_helper.rb
+cookbooks/ntp/metadata.json
+cookbooks/ntp/recipes
+cookbooks/ntp/recipes/apparmor.rb
+cookbooks/ntp/recipes/default.rb
+cookbooks/ntp/recipes/mac_os_x_client.rb
+cookbooks/ntp/recipes/windows_client.rb
+cookbooks/ntp/templates
+cookbooks/ntp/templates/ntp.conf.erb
+cookbooks/packagecloud
+cookbooks/packagecloud/.ruby-version
+cookbooks/packagecloud/Gemfile
+cookbooks/packagecloud/Gemfile.lock
+cookbooks/packagecloud/LICENSE
+cookbooks/packagecloud/README.md
+cookbooks/packagecloud/THANKS
+cookbooks/packagecloud/Thorfile
+cookbooks/packagecloud/attributes
+cookbooks/packagecloud/attributes/default.rb
+cookbooks/packagecloud/bin
+cookbooks/packagecloud/bin/bake
+cookbooks/packagecloud/bin/berks
+cookbooks/packagecloud/bin/bundle
+cookbooks/packagecloud/bin/bundler
+cookbooks/packagecloud/bin/chef-apply
+cookbooks/packagecloud/bin/chef-client
+cookbooks/packagecloud/bin/chef-shell
+cookbooks/packagecloud/bin/chef-solo
+cookbooks/packagecloud/bin/chef-zero
+cookbooks/packagecloud/bin/erubis
+cookbooks/packagecloud/bin/fauxhai
+cookbooks/packagecloud/bin/ffi-yajl-bench
+cookbooks/packagecloud/bin/fission
+cookbooks/packagecloud/bin/fog
+cookbooks/packagecloud/bin/foodcritic
+cookbooks/packagecloud/bin/htmldiff
+cookbooks/packagecloud/bin/httpclient
+cookbooks/packagecloud/bin/kitchen
+cookbooks/packagecloud/bin/knife
+cookbooks/packagecloud/bin/ldiff
+cookbooks/packagecloud/bin/minitar
+cookbooks/packagecloud/bin/nokogiri
+cookbooks/packagecloud/bin/ohai
+cookbooks/packagecloud/bin/pirb
+cookbooks/packagecloud/bin/pruby
+cookbooks/packagecloud/bin/rackup
+cookbooks/packagecloud/bin/rake
+cookbooks/packagecloud/bin/rspec
+cookbooks/packagecloud/bin/rubocop
+cookbooks/packagecloud/bin/ruby-parse
+cookbooks/packagecloud/bin/ruby-rewrite
+cookbooks/packagecloud/bin/safe_yaml
+cookbooks/packagecloud/bin/serverspec-init
+cookbooks/packagecloud/bin/stove
+cookbooks/packagecloud/bin/thor
+cookbooks/packagecloud/bin/tt
+cookbooks/packagecloud/chefignore
+cookbooks/packagecloud/libraries
+cookbooks/packagecloud/libraries/helper.rb
+cookbooks/packagecloud/libraries/matchers.rb
+cookbooks/packagecloud/metadata.json
+cookbooks/packagecloud/resources
+cookbooks/packagecloud/resources/repo.rb
+cookbooks/packagecloud/spec
+cookbooks/packagecloud/spec/matchers_spec.rb
+cookbooks/packagecloud/templates
+cookbooks/packagecloud/templates/.kitchen
+cookbooks/packagecloud/templates/.kitchen/logs
+cookbooks/packagecloud/templates/.kitchen/logs/kitchen.log
+cookbooks/packagecloud/templates/default
+cookbooks/packagecloud/templates/default/apt.erb
+cookbooks/packagecloud/templates/default/yum.erb
+cookbooks/packagecloud/test
+cookbooks/packagecloud/test/fixtures
+cookbooks/packagecloud/test/fixtures/cookbooks
+cookbooks/packagecloud/test/fixtures/cookbooks/.kitchen
+cookbooks/packagecloud/test/fixtures/cookbooks/.kitchen/logs
+cookbooks/packagecloud/test/fixtures/cookbooks/.kitchen/logs/kitchen.log
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/metadata.rb
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/.kitchen
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/.kitchen/logs
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/.kitchen/logs/kitchen.log
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/deb.rb
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/distro_deps.rb
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/rpm.rb
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/rubygems.rb
+cookbooks/packagecloud/test/fixtures/cookbooks/packagecloud_test/recipes/rubygems_private.rb
+cookbooks/packagecloud/test/integration
+cookbooks/packagecloud/test/integration/default
+cookbooks/packagecloud/test/integration/default/force_os_spec.rb
+cookbooks/packagecloud/test/integration/default/jake_spec.rb
+cookbooks/packagecloud/test/integration/default/jakedotrb_spec.rb
+cookbooks/riak
+cookbooks/riak/CHANGELOG.md
+cookbooks/riak/README.md
+cookbooks/riak/attributes
+cookbooks/riak/attributes/default.rb
+cookbooks/riak/attributes/monit.rb
+cookbooks/riak/attributes/package.rb
+cookbooks/riak/attributes/source.rb
+cookbooks/riak/libraries
+cookbooks/riak/libraries/erlang_template_helper.rb
+cookbooks/riak/metadata.json
+cookbooks/riak/recipes
+cookbooks/riak/recipes/custom_repository.rb
+cookbooks/riak/recipes/default.rb
+cookbooks/riak/recipes/enterprise_package.rb
+cookbooks/riak/recipes/monit.rb
+cookbooks/riak/recipes/package.rb
+cookbooks/riak/recipes/source.rb
+cookbooks/riak/templates
+cookbooks/riak/templates/default
+cookbooks/riak/templates/default/riak-monit.conf.erb
+cookbooks/riak-cs
+cookbooks/riak-cs/CHANGELOG.md
+cookbooks/riak-cs/README.md
+cookbooks/riak-cs/attributes
+cookbooks/riak-cs/attributes/control.rb
+cookbooks/riak-cs/attributes/default.rb
+cookbooks/riak-cs/attributes/package.rb
+cookbooks/riak-cs/attributes/stanchion.rb
+cookbooks/riak-cs/files
+cookbooks/riak-cs/files/default
+cookbooks/riak-cs/files/default/tests
+cookbooks/riak-cs/files/default/tests/minitest
+cookbooks/riak-cs/files/default/tests/minitest/control_test.rb
+cookbooks/riak-cs/files/default/tests/minitest/default_test.rb
+cookbooks/riak-cs/files/default/tests/minitest/stanchion_test.rb
+cookbooks/riak-cs/files/default/tests/minitest/support
+cookbooks/riak-cs/files/default/tests/minitest/support/helpers.rb
+cookbooks/riak-cs/libraries
+cookbooks/riak-cs/libraries/erlang_template_helper.rb
+cookbooks/riak-cs/metadata.json
+cookbooks/riak-cs/recipes
+cookbooks/riak-cs/recipes/control.rb
+cookbooks/riak-cs/recipes/default.rb
+cookbooks/riak-cs/recipes/enterprise_package.rb
+cookbooks/riak-cs/recipes/package.rb
+cookbooks/riak-cs/recipes/stanchion.rb
+cookbooks/riak-cs-create-admin-user
+cookbooks/riak-cs-create-admin-user/CHANGELOG.md
+cookbooks/riak-cs-create-admin-user/CONTRIBUTORS
+cookbooks/riak-cs-create-admin-user/LICENSE
+cookbooks/riak-cs-create-admin-user/README.md
+cookbooks/riak-cs-create-admin-user/attributes
+cookbooks/riak-cs-create-admin-user/attributes/default.rb
+cookbooks/riak-cs-create-admin-user/libraries
+cookbooks/riak-cs-create-admin-user/libraries/riak_cs_create_admin_user.rb
+cookbooks/riak-cs-create-admin-user/metadata.json
+cookbooks/riak-cs-create-admin-user/recipes
+cookbooks/riak-cs-create-admin-user/recipes/default.rb
+cookbooks/riak-cs-ssl
+cookbooks/riak-cs-ssl/CHANGELOG.md
+cookbooks/riak-cs-ssl/CONTRIBUTORS
+cookbooks/riak-cs-ssl/LICENSE
+cookbooks/riak-cs-ssl/README.md
+cookbooks/riak-cs-ssl/metadata.json
+cookbooks/riak-cs-ssl/recipes
+cookbooks/riak-cs-ssl/recipes/default.rb
+cookbooks/riakcs-cluster
+cookbooks/riakcs-cluster/Berksfile
+cookbooks/riakcs-cluster/CHANGELOG.md
+cookbooks/riakcs-cluster/LICENSE
+cookbooks/riakcs-cluster/README.md
+cookbooks/riakcs-cluster/bootstrap.json
+cookbooks/riakcs-cluster/bootstrap_head.json
+cookbooks/riakcs-cluster/bootstrap_node.json
+cookbooks/riakcs-cluster/bootstrap_nuke.json
+cookbooks/riakcs-cluster/environment
+cookbooks/riakcs-cluster/environment/riakcs_cluster.json
+cookbooks/riakcs-cluster/libraries
+cookbooks/riakcs-cluster/libraries/creds_sync.rb
+cookbooks/riakcs-cluster/metadata.json
+cookbooks/riakcs-cluster/motherbrain.rb
+cookbooks/riakcs-cluster/providers
+cookbooks/riakcs-cluster/providers/node.rb
+cookbooks/riakcs-cluster/recipes
+cookbooks/riakcs-cluster/recipes/credentials.rb
+cookbooks/riakcs-cluster/recipes/join.rb
+cookbooks/riakcs-cluster/recipes/mergecreds.rb
+cookbooks/riakcs-cluster/recipes/nuke.rb
+cookbooks/riakcs-cluster/recipes/sync.rb
+cookbooks/riakcs-cluster/recipes/ttyfix.rb
+cookbooks/riakcs-cluster/resources
+cookbooks/riakcs-cluster/resources/node.rb
+cookbooks/runit
+cookbooks/runit/CHANGELOG.md
+cookbooks/runit/CONTRIBUTING.md
+cookbooks/runit/README.md
+cookbooks/runit/attributes
+cookbooks/runit/attributes/default.rb
+cookbooks/runit/files
+cookbooks/runit/files/runit.seed
+cookbooks/runit/libraries
+cookbooks/runit/libraries/helpers.rb
+cookbooks/runit/libraries/provider_runit_service.rb
+cookbooks/runit/libraries/resource_runit_service.rb
+cookbooks/runit/metadata.json
+cookbooks/runit/recipes
+cookbooks/runit/recipes/default.rb
+cookbooks/runit/templates
+cookbooks/runit/templates/.DS_Store
+cookbooks/runit/templates/debian
+cookbooks/runit/templates/debian/init.d.erb
+cookbooks/runit/templates/default
+cookbooks/runit/templates/default/log-config.erb
+cookbooks/selinux
+cookbooks/selinux/CHANGELOG.md
+cookbooks/selinux/CONTRIBUTING.md
+cookbooks/selinux/README.md
+cookbooks/selinux/attributes
+cookbooks/selinux/attributes/default.rb
+cookbooks/selinux/libraries
+cookbooks/selinux/libraries/selinux_service_helpers.rb
+cookbooks/selinux/metadata.json
+cookbooks/selinux/recipes
+cookbooks/selinux/recipes/_common.rb
+cookbooks/selinux/recipes/default.rb
+cookbooks/selinux/recipes/disabled.rb
+cookbooks/selinux/recipes/enforcing.rb
+cookbooks/selinux/recipes/permissive.rb
+cookbooks/selinux/resources
+cookbooks/selinux/resources/install.rb
+cookbooks/selinux/resources/state.rb
+cookbooks/selinux/resources/state_debian.rb
+cookbooks/selinux/templates
+cookbooks/selinux/templates/default
+cookbooks/selinux/templates/default/sysconfig
+cookbooks/selinux/templates/default/sysconfig/selinux.erb
+cookbooks/sysctl
+cookbooks/sysctl/.kitchen.yml
+cookbooks/sysctl/Gemfile
+cookbooks/sysctl/Gemfile.lock
+cookbooks/sysctl/README.md
+cookbooks/sysctl/attributes
+cookbooks/sysctl/attributes/default.rb
+cookbooks/sysctl/chefignore
+cookbooks/sysctl/kitchen.local.yml
+cookbooks/sysctl/libraries
+cookbooks/sysctl/libraries/matchers.rb
+cookbooks/sysctl/libraries/sysctl.rb
+cookbooks/sysctl/metadata.json
+cookbooks/sysctl/providers
+cookbooks/sysctl/providers/param.rb
+cookbooks/sysctl/recipes
+cookbooks/sysctl/recipes/default.rb
+cookbooks/sysctl/recipes/service.rb
+cookbooks/sysctl/resources
+cookbooks/sysctl/resources/param.rb
+cookbooks/sysctl/templates
+cookbooks/sysctl/templates/default
+cookbooks/sysctl/templates/default/procps.init-rhel.erb
+cookbooks/sysctl/templates/default/sysctl.conf.erb
+cookbooks/ulimit
+cookbooks/ulimit/CHANGELOG.md
+cookbooks/ulimit/README.md
+cookbooks/ulimit/attributes
+cookbooks/ulimit/attributes/default.rb
+cookbooks/ulimit/definitions
+cookbooks/ulimit/definitions/user_ulimit.rb
+cookbooks/ulimit/metadata.json
+cookbooks/ulimit/providers
+cookbooks/ulimit/providers/domain.rb
+cookbooks/ulimit/providers/rule.rb
+cookbooks/ulimit/recipes
+cookbooks/ulimit/recipes/default.rb
+cookbooks/ulimit/resources
+cookbooks/ulimit/resources/domain.rb
+cookbooks/ulimit/resources/rule.rb
+cookbooks/ulimit/templates
+cookbooks/ulimit/templates/default
+cookbooks/ulimit/templates/default/domain.erb
+cookbooks/ulimit/templates/default/su.erb
+cookbooks/ulimit/templates/default/ulimit.erb
+cookbooks/windows
+cookbooks/windows/CHANGELOG.md
+cookbooks/windows/CONTRIBUTING.md
+cookbooks/windows/README.md
+cookbooks/windows/libraries
+cookbooks/windows/libraries/powershell_helper.rb
+cookbooks/windows/libraries/registry_helper.rb
+cookbooks/windows/libraries/version.rb
+cookbooks/windows/libraries/version_helper.rb
+cookbooks/windows/libraries/windows_helper.rb
+cookbooks/windows/libraries/windows_privileged.rb
+cookbooks/windows/libraries/wmi_helper.rb
+cookbooks/windows/metadata.json
+cookbooks/windows/providers
+cookbooks/windows/providers/dns.rb
+cookbooks/windows/recipes
+cookbooks/windows/recipes/default.rb
+cookbooks/windows/resources
+cookbooks/windows/resources/auto_run.rb
+cookbooks/windows/resources/certificate.rb
+cookbooks/windows/resources/certificate_binding.rb
+cookbooks/windows/resources/dns.rb
+cookbooks/windows/resources/feature.rb
+cookbooks/windows/resources/feature_dism.rb
+cookbooks/windows/resources/feature_powershell.rb
+cookbooks/windows/resources/font.rb
+cookbooks/windows/resources/http_acl.rb
+cookbooks/windows/resources/pagefile.rb
+cookbooks/windows/resources/path.rb
+cookbooks/windows/resources/printer.rb
+cookbooks/windows/resources/printer_port.rb
+cookbooks/windows/resources/share.rb
+cookbooks/windows/resources/shortcut.rb
+cookbooks/windows/resources/task.rb
+cookbooks/windows/resources/user_privilege.rb
+cookbooks/windows/resources/zipfile.rb
+cookbooks/yum
+cookbooks/yum/CHANGELOG.md
+cookbooks/yum/CONTRIBUTING.md
+cookbooks/yum/MAINTAINERS.md
+cookbooks/yum/README.md
+cookbooks/yum/attributes
+cookbooks/yum/attributes/main.rb
+cookbooks/yum/libraries
+cookbooks/yum/libraries/matchers.rb
+cookbooks/yum/metadata.json
+cookbooks/yum/providers
+cookbooks/yum/providers/globalconfig.rb
+cookbooks/yum/providers/repository.rb
+cookbooks/yum/recipes
+cookbooks/yum/recipes/default.rb
+cookbooks/yum/recipes/dnf_yum_compat.rb
+cookbooks/yum/resources
+cookbooks/yum/resources/globalconfig.rb
+cookbooks/yum/resources/repository.rb
+cookbooks/yum/templates
+cookbooks/yum/templates/default
+cookbooks/yum/templates/default/main.erb
+cookbooks/yum/templates/default/repo.erb
+cookbooks/yum-epel
+cookbooks/yum-epel/CHANGELOG.md
+cookbooks/yum-epel/CONTRIBUTING.md
+cookbooks/yum-epel/MAINTAINERS.md
+cookbooks/yum-epel/README.md
+cookbooks/yum-epel/attributes
+cookbooks/yum-epel/attributes/default.rb
+cookbooks/yum-epel/attributes/epel-debuginfo.rb
+cookbooks/yum-epel/attributes/epel-source.rb
+cookbooks/yum-epel/attributes/epel-testing-debuginfo.rb
+cookbooks/yum-epel/attributes/epel-testing-source.rb
+cookbooks/yum-epel/attributes/epel-testing.rb
+cookbooks/yum-epel/attributes/epel.rb
+cookbooks/yum-epel/metadata.json
+cookbooks/yum-epel/recipes
+cookbooks/yum-epel/recipes/default.rb
+cookbooks/yum-erlang_solutions
+cookbooks/yum-erlang_solutions/CHANGELOG.md
+cookbooks/yum-erlang_solutions/CONTRIBUTING.md
+cookbooks/yum-erlang_solutions/README.md
+cookbooks/yum-erlang_solutions/attributes
+cookbooks/yum-erlang_solutions/attributes/erlang_solutions.rb
+cookbooks/yum-erlang_solutions/metadata.json
+cookbooks/yum-erlang_solutions/recipes
+cookbooks/yum-erlang_solutions/recipes/default.rb
+cookbooks/zookeeper
+cookbooks/zookeeper/.gitignore
+cookbooks/zookeeper/CHANGELOG.md
+cookbooks/zookeeper/LICENSE
+cookbooks/zookeeper/README.md
+cookbooks/zookeeper/attributes
+cookbooks/zookeeper/attributes/default.rb
+cookbooks/zookeeper/metadata.json
+cookbooks/zookeeper/recipes
+cookbooks/zookeeper/recipes/default.rb
+cookbooks/zookeeper/recipes/nuke.rb
+cookbooks/zookeeper/templates
+cookbooks/zookeeper/templates/default
+cookbooks/zookeeper/templates/default/zoo.cfg.erb
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.globo.com
+ * extras: mirror.globo.com
+ * updates: mirror.globo.com
+Resolving Dependencies
+--> Running transaction check
+---> Package bind-export-libs.x86_64 32:9.11.4-16.P2.el7 will be updated
+---> Package bind-export-libs.x86_64 32:9.11.4-16.P2.el7_8.6 will be an update
+---> Package binutils.x86_64 0:2.27-43.base.el7 will be updated
+---> Package binutils.x86_64 0:2.27-43.base.el7_8.1 will be an update
+---> Package ca-certificates.noarch 0:2019.2.32-76.el7_7 will be updated
+---> Package ca-certificates.noarch 0:2020.2.41-70.0.el7_8 will be an update
+---> Package curl.x86_64 0:7.29.0-57.el7 will be updated
+---> Package curl.x86_64 0:7.29.0-57.el7_8.1 will be an update
+---> Package dbus.x86_64 1:1.10.24-13.el7_6 will be updated
+---> Package dbus.x86_64 1:1.10.24-14.el7_8 will be an update
+---> Package dbus-libs.x86_64 1:1.10.24-13.el7_6 will be updated
+---> Package dbus-libs.x86_64 1:1.10.24-14.el7_8 will be an update
+---> Package device-mapper.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-event.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-event.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-event-libs.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-event-libs.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package device-mapper-libs.x86_64 7:1.02.164-7.el7 will be updated
+---> Package device-mapper-libs.x86_64 7:1.02.164-7.el7_8.2 will be an update
+---> Package firewalld.noarch 0:0.6.3-8.el7 will be updated
+---> Package firewalld.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package firewalld-filesystem.noarch 0:0.6.3-8.el7 will be updated
+---> Package firewalld-filesystem.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package grub2.x86_64 1:2.02-0.81.el7.centos will be updated
+---> Package grub2.x86_64 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-common.noarch 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-common.noarch 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-pc.x86_64 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-pc.x86_64 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-pc-modules.noarch 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-pc-modules.noarch 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-tools.x86_64 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-tools.x86_64 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-tools-extra.x86_64 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-tools-extra.x86_64 1:2.02-0.86.el7.centos will be an update
+---> Package grub2-tools-minimal.x86_64 1:2.02-0.81.el7.centos will be updated
+---> Package grub2-tools-minimal.x86_64 1:2.02-0.86.el7.centos will be an update
+---> Package iprutils.x86_64 0:2.4.17.1-3.el7 will be updated
+---> Package iprutils.x86_64 0:2.4.17.1-3.el7_7 will be an update
+---> Package kernel.x86_64 0:3.10.0-1127.19.1.el7 will be installed
+---> Package kernel-tools.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package kernel-tools.x86_64 0:3.10.0-1127.19.1.el7 will be an update
+---> Package kernel-tools-libs.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package kernel-tools-libs.x86_64 0:3.10.0-1127.19.1.el7 will be an update
+---> Package libcurl.x86_64 0:7.29.0-57.el7 will be updated
+---> Package libcurl.x86_64 0:7.29.0-57.el7_8.1 will be an update
+---> Package lvm2.x86_64 7:2.02.186-7.el7 will be updated
+---> Package lvm2.x86_64 7:2.02.186-7.el7_8.2 will be an update
+---> Package lvm2-libs.x86_64 7:2.02.186-7.el7 will be updated
+---> Package lvm2-libs.x86_64 7:2.02.186-7.el7_8.2 will be an update
+---> Package microcode_ctl.x86_64 2:2.1-61.el7 will be updated
+---> Package microcode_ctl.x86_64 2:2.1-61.10.el7_8 will be an update
+---> Package python-firewall.noarch 0:0.6.3-8.el7 will be updated
+---> Package python-firewall.noarch 0:0.6.3-8.el7_8.1 will be an update
+---> Package python-perf.x86_64 0:3.10.0-1127.el7 will be updated
+---> Package python-perf.x86_64 0:3.10.0-1127.19.1.el7 will be an update
+---> Package rsyslog.x86_64 0:8.24.0-52.el7 will be updated
+---> Package rsyslog.x86_64 0:8.24.0-52.el7_8.2 will be an update
+---> Package selinux-policy.noarch 0:3.13.1-266.el7 will be updated
+---> Package selinux-policy.noarch 0:3.13.1-266.el7_8.1 will be an update
+---> Package selinux-policy-targeted.noarch 0:3.13.1-266.el7 will be updated
+---> Package selinux-policy-targeted.noarch 0:3.13.1-266.el7_8.1 will be an update
+---> Package systemd.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd.x86_64 0:219-73.el7_8.9 will be an update
+---> Package systemd-libs.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd-libs.x86_64 0:219-73.el7_8.9 will be an update
+---> Package systemd-sysv.x86_64 0:219-73.el7.1 will be updated
+---> Package systemd-sysv.x86_64 0:219-73.el7_8.9 will be an update
+---> Package tzdata.noarch 0:2019c-1.el7 will be updated
+---> Package tzdata.noarch 0:2020a-1.el7 will be an update
+---> Package yum-plugin-fastestmirror.noarch 0:1.1.31-53.el7 will be updated
+---> Package yum-plugin-fastestmirror.noarch 0:1.1.31-54.el7_8 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                    Arch     Version                    Repository
+                                                                           Size
+================================================================================
+Installing:
+ kernel                     x86_64   3.10.0-1127.19.1.el7       updates    50 M
+Updating:
+ bind-export-libs           x86_64   32:9.11.4-16.P2.el7_8.6    updates   1.1 M
+ binutils                   x86_64   2.27-43.base.el7_8.1       updates   5.9 M
+ ca-certificates            noarch   2020.2.41-70.0.el7_8       updates   382 k
+ curl                       x86_64   7.29.0-57.el7_8.1          updates   271 k
+ dbus                       x86_64   1:1.10.24-14.el7_8         updates   245 k
+ dbus-libs                  x86_64   1:1.10.24-14.el7_8         updates   169 k
+ device-mapper              x86_64   7:1.02.164-7.el7_8.2       updates   295 k
+ device-mapper-event        x86_64   7:1.02.164-7.el7_8.2       updates   191 k
+ device-mapper-event-libs   x86_64   7:1.02.164-7.el7_8.2       updates   190 k
+ device-mapper-libs         x86_64   7:1.02.164-7.el7_8.2       updates   324 k
+ firewalld                  noarch   0.6.3-8.el7_8.1            updates   443 k
+ firewalld-filesystem       noarch   0.6.3-8.el7_8.1            updates    51 k
+ grub2                      x86_64   1:2.02-0.86.el7.centos     updates    32 k
+ grub2-common               noarch   1:2.02-0.86.el7.centos     updates   729 k
+ grub2-pc                   x86_64   1:2.02-0.86.el7.centos     updates    32 k
+ grub2-pc-modules           noarch   1:2.02-0.86.el7.centos     updates   850 k
+ grub2-tools                x86_64   1:2.02-0.86.el7.centos     updates   1.8 M
+ grub2-tools-extra          x86_64   1:2.02-0.86.el7.centos     updates   1.0 M
+ grub2-tools-minimal        x86_64   1:2.02-0.86.el7.centos     updates   174 k
+ iprutils                   x86_64   2.4.17.1-3.el7_7           updates   243 k
+ kernel-tools               x86_64   3.10.0-1127.19.1.el7       updates   8.1 M
+ kernel-tools-libs          x86_64   3.10.0-1127.19.1.el7       updates   8.0 M
+ libcurl                    x86_64   7.29.0-57.el7_8.1          updates   223 k
+ lvm2                       x86_64   7:2.02.186-7.el7_8.2       updates   1.3 M
+ lvm2-libs                  x86_64   7:2.02.186-7.el7_8.2       updates   1.1 M
+ microcode_ctl              x86_64   2:2.1-61.10.el7_8          updates   2.7 M
+ python-firewall            noarch   0.6.3-8.el7_8.1            updates   354 k
+ python-perf                x86_64   3.10.0-1127.19.1.el7       updates   8.1 M
+ rsyslog                    x86_64   8.24.0-52.el7_8.2          updates   621 k
+ selinux-policy             noarch   3.13.1-266.el7_8.1         updates   497 k
+ selinux-policy-targeted    noarch   3.13.1-266.el7_8.1         updates   7.0 M
+ systemd                    x86_64   219-73.el7_8.9             updates   5.1 M
+ systemd-libs               x86_64   219-73.el7_8.9             updates   416 k
+ systemd-sysv               x86_64   219-73.el7_8.9             updates    94 k
+ tzdata                     noarch   2020a-1.el7                updates   495 k
+ yum-plugin-fastestmirror   noarch   1.1.31-54.el7_8            updates    34 k
+
+Transaction Summary
+================================================================================
+Install   1 Package
+Upgrade  36 Packages
+
+Total download size: 108 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+--------------------------------------------------------------------------------
+Total                                              2.4 MB/s | 108 MB  00:45     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+Warning: RPMDB altered outside of yum.
+  Updating   : systemd-libs-219-73.el7_8.9.x86_64                          1/73 
+  Updating   : 1:grub2-common-2.02-0.86.el7.centos.noarch                  2/73 
+  Updating   : libcurl-7.29.0-57.el7_8.1.x86_64                            3/73 
+  Updating   : 1:grub2-pc-modules-2.02-0.86.el7.centos.noarch              4/73 
+  Updating   : 1:dbus-libs-1.10.24-14.el7_8.x86_64                         5/73 
+  Updating   : systemd-219-73.el7_8.9.x86_64                               6/73 
+  Updating   : 1:dbus-1.10.24-14.el7_8.x86_64                              7/73 
+  Updating   : 7:device-mapper-libs-1.02.164-7.el7_8.2.x86_64              8/73 
+  Updating   : 7:device-mapper-1.02.164-7.el7_8.2.x86_64                   9/73 
+  Updating   : 1:grub2-tools-minimal-2.02-0.86.el7.centos.x86_64          10/73 
+  Updating   : 7:device-mapper-event-libs-1.02.164-7.el7_8.2.x86_64       11/73 
+  Updating   : 1:grub2-tools-2.02-0.86.el7.centos.x86_64                  12/73 
+  Updating   : 1:grub2-tools-extra-2.02-0.86.el7.centos.x86_64            13/73 
+  Updating   : 1:grub2-pc-2.02-0.86.el7.centos.x86_64                     14/73 
+  Updating   : 7:device-mapper-event-1.02.164-7.el7_8.2.x86_64            15/73 
+  Updating   : 7:lvm2-libs-2.02.186-7.el7_8.2.x86_64                      16/73 
+  Updating   : firewalld-filesystem-0.6.3-8.el7_8.1.noarch                17/73 
+  Updating   : python-firewall-0.6.3-8.el7_8.1.noarch                     18/73 
+  Updating   : selinux-policy-3.13.1-266.el7_8.1.noarch                   19/73 
+  Updating   : kernel-tools-libs-3.10.0-1127.19.1.el7.x86_64              20/73 
+  Updating   : kernel-tools-3.10.0-1127.19.1.el7.x86_64                   21/73 
+  Updating   : selinux-policy-targeted-3.13.1-266.el7_8.1.noarch          22/73 
+  Updating   : firewalld-0.6.3-8.el7_8.1.noarch                           23/73 
+  Updating   : 7:lvm2-2.02.186-7.el7_8.2.x86_64                           24/73 
+  Updating   : 1:grub2-2.02-0.86.el7.centos.x86_64                        25/73 
+  Updating   : rsyslog-8.24.0-52.el7_8.2.x86_64                           26/73 
+  Updating   : systemd-sysv-219-73.el7_8.9.x86_64                         27/73 
+  Updating   : 2:microcode_ctl-2.1-61.10.el7_8.x86_64                     28/73 
+  Updating   : curl-7.29.0-57.el7_8.1.x86_64                              29/73 
+  Updating   : tzdata-2020a-1.el7.noarch                                  30/73 
+  Updating   : 32:bind-export-libs-9.11.4-16.P2.el7_8.6.x86_64            31/73 
+  Updating   : python-perf-3.10.0-1127.19.1.el7.x86_64                    32/73 
+  Updating   : iprutils-2.4.17.1-3.el7_7.x86_64                           33/73 
+  Installing : kernel-3.10.0-1127.19.1.el7.x86_64                         34/73 
+  Updating   : binutils-2.27-43.base.el7_8.1.x86_64                       35/73 
+  Updating   : yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch            36/73 
+  Updating   : ca-certificates-2020.2.41-70.0.el7_8.noarch                37/73 
+  Cleanup    : 7:lvm2-2.02.186-7.el7.x86_64                               38/73 
+  Cleanup    : firewalld-0.6.3-8.el7.noarch                               39/73 
+  Cleanup    : selinux-policy-targeted-3.13.1-266.el7.noarch              40/73 
+  Cleanup    : 2:microcode_ctl-2.1-61.el7.x86_64                          41/73 
+  Cleanup    : systemd-sysv-219-73.el7.1.x86_64                           42/73 
+  Cleanup    : 1:grub2-2.02-0.81.el7.centos.x86_64                        43/73 
+  Cleanup    : 1:grub2-pc-2.02-0.81.el7.centos.x86_64                     44/73 
+  Cleanup    : 1:grub2-tools-extra-2.02-0.81.el7.centos.x86_64            45/73 
+  Cleanup    : 7:lvm2-libs-2.02.186-7.el7.x86_64                          46/73 
+  Cleanup    : 7:device-mapper-event-1.02.164-7.el7.x86_64                47/73 
+  Cleanup    : 1:grub2-tools-2.02-0.81.el7.centos.x86_64                  48/73 
+  Cleanup    : 1:grub2-tools-minimal-2.02-0.81.el7.centos.x86_64          49/73 
+  Cleanup    : rsyslog-8.24.0-52.el7.x86_64                               50/73 
+  Cleanup    : 1:grub2-pc-modules-2.02-0.81.el7.centos.noarch             51/73 
+  Cleanup    : 7:device-mapper-event-libs-1.02.164-7.el7.x86_64           52/73 
+  Cleanup    : 7:device-mapper-1.02.164-7.el7.x86_64                      53/73 
+  Cleanup    : 7:device-mapper-libs-1.02.164-7.el7.x86_64                 54/73 
+  Cleanup    : 1:dbus-1.10.24-13.el7_6.x86_64                             55/73 
+  Cleanup    : systemd-219-73.el7.1.x86_64                                56/73 
+  Cleanup    : 1:dbus-libs-1.10.24-13.el7_6.x86_64                        57/73 
+  Cleanup    : curl-7.29.0-57.el7.x86_64                                  58/73 
+  Cleanup    : kernel-tools-3.10.0-1127.el7.x86_64                        59/73 
+  Cleanup    : 1:grub2-common-2.02-0.81.el7.centos.noarch                 60/73 
+  Cleanup    : selinux-policy-3.13.1-266.el7.noarch                       61/73 
+  Cleanup    : firewalld-filesystem-0.6.3-8.el7.noarch                    62/73 
+  Cleanup    : python-firewall-0.6.3-8.el7.noarch                         63/73 
+  Cleanup    : tzdata-2019c-1.el7.noarch                                  64/73 
+  Cleanup    : yum-plugin-fastestmirror-1.1.31-53.el7.noarch              65/73 
+  Cleanup    : ca-certificates-2019.2.32-76.el7_7.noarch                  66/73 
+  Cleanup    : kernel-tools-libs-3.10.0-1127.el7.x86_64                   67/73 
+  Cleanup    : libcurl-7.29.0-57.el7.x86_64                               68/73 
+  Cleanup    : systemd-libs-219-73.el7.1.x86_64                           69/73 
+  Cleanup    : 32:bind-export-libs-9.11.4-16.P2.el7.x86_64                70/73 
+  Cleanup    : python-perf-3.10.0-1127.el7.x86_64                         71/73 
+  Cleanup    : iprutils-2.4.17.1-3.el7.x86_64                             72/73 
+  Cleanup    : binutils-2.27-43.base.el7.x86_64                           73/73 
+  Verifying  : 1:dbus-libs-1.10.24-14.el7_8.x86_64                         1/73 
+  Verifying  : kernel-tools-3.10.0-1127.19.1.el7.x86_64                    2/73 
+  Verifying  : 7:device-mapper-libs-1.02.164-7.el7_8.2.x86_64              3/73 
+  Verifying  : ca-certificates-2020.2.41-70.0.el7_8.noarch                 4/73 
+  Verifying  : 7:lvm2-2.02.186-7.el7_8.2.x86_64                            5/73 
+  Verifying  : kernel-tools-libs-3.10.0-1127.19.1.el7.x86_64               6/73 
+  Verifying  : yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch             7/73 
+  Verifying  : 1:grub2-2.02-0.86.el7.centos.x86_64                         8/73 
+  Verifying  : binutils-2.27-43.base.el7_8.1.x86_64                        9/73 
+  Verifying  : rsyslog-8.24.0-52.el7_8.2.x86_64                           10/73 
+  Verifying  : kernel-3.10.0-1127.19.1.el7.x86_64                         11/73 
+  Verifying  : 1:grub2-common-2.02-0.86.el7.centos.noarch                 12/73 
+  Verifying  : iprutils-2.4.17.1-3.el7_7.x86_64                           13/73 
+  Verifying  : 1:dbus-1.10.24-14.el7_8.x86_64                             14/73 
+  Verifying  : systemd-sysv-219-73.el7_8.9.x86_64                         15/73 
+  Verifying  : 7:lvm2-libs-2.02.186-7.el7_8.2.x86_64                      16/73 
+  Verifying  : firewalld-0.6.3-8.el7_8.1.noarch                           17/73 
+  Verifying  : systemd-219-73.el7_8.9.x86_64                              18/73 
+  Verifying  : curl-7.29.0-57.el7_8.1.x86_64                              19/73 
+  Verifying  : python-perf-3.10.0-1127.19.1.el7.x86_64                    20/73 
+  Verifying  : 32:bind-export-libs-9.11.4-16.P2.el7_8.6.x86_64            21/73 
+  Verifying  : 1:grub2-tools-2.02-0.86.el7.centos.x86_64                  22/73 
+  Verifying  : 2:microcode_ctl-2.1-61.10.el7_8.x86_64                     23/73 
+  Verifying  : tzdata-2020a-1.el7.noarch                                  24/73 
+  Verifying  : 1:grub2-tools-minimal-2.02-0.86.el7.centos.x86_64          25/73 
+  Verifying  : selinux-policy-3.13.1-266.el7_8.1.noarch                   26/73 
+  Verifying  : systemd-libs-219-73.el7_8.9.x86_64                         27/73 
+  Verifying  : python-firewall-0.6.3-8.el7_8.1.noarch                     28/73 
+  Verifying  : 7:device-mapper-1.02.164-7.el7_8.2.x86_64                  29/73 
+  Verifying  : 1:grub2-pc-2.02-0.86.el7.centos.x86_64                     30/73 
+  Verifying  : selinux-policy-targeted-3.13.1-266.el7_8.1.noarch          31/73 
+  Verifying  : firewalld-filesystem-0.6.3-8.el7_8.1.noarch                32/73 
+  Verifying  : 1:grub2-tools-extra-2.02-0.86.el7.centos.x86_64            33/73 
+  Verifying  : libcurl-7.29.0-57.el7_8.1.x86_64                           34/73 
+  Verifying  : 1:grub2-pc-modules-2.02-0.86.el7.centos.noarch             35/73 
+  Verifying  : 7:device-mapper-event-1.02.164-7.el7_8.2.x86_64            36/73 
+  Verifying  : 7:device-mapper-event-libs-1.02.164-7.el7_8.2.x86_64       37/73 
+  Verifying  : rsyslog-8.24.0-52.el7.x86_64                               38/73 
+  Verifying  : 1:grub2-2.02-0.81.el7.centos.x86_64                        39/73 
+  Verifying  : tzdata-2019c-1.el7.noarch                                  40/73 
+  Verifying  : 1:grub2-tools-2.02-0.81.el7.centos.x86_64                  41/73 
+  Verifying  : 1:grub2-common-2.02-0.81.el7.centos.noarch                 42/73 
+  Verifying  : 2:microcode_ctl-2.1-61.el7.x86_64                          43/73 
+  Verifying  : firewalld-0.6.3-8.el7.noarch                               44/73 
+  Verifying  : 7:lvm2-libs-2.02.186-7.el7.x86_64                          45/73 
+  Verifying  : libcurl-7.29.0-57.el7.x86_64                               46/73 
+  Verifying  : 32:bind-export-libs-9.11.4-16.P2.el7.x86_64                47/73 
+  Verifying  : 7:device-mapper-event-libs-1.02.164-7.el7.x86_64           48/73 
+  Verifying  : 7:lvm2-2.02.186-7.el7.x86_64                               49/73 
+  Verifying  : curl-7.29.0-57.el7.x86_64                                  50/73 
+  Verifying  : selinux-policy-3.13.1-266.el7.noarch                       51/73 
+  Verifying  : systemd-219-73.el7.1.x86_64                                52/73 
+  Verifying  : systemd-sysv-219-73.el7.1.x86_64                           53/73 
+  Verifying  : ca-certificates-2019.2.32-76.el7_7.noarch                  54/73 
+  Verifying  : systemd-libs-219-73.el7.1.x86_64                           55/73 
+  Verifying  : firewalld-filesystem-0.6.3-8.el7.noarch                    56/73 
+  Verifying  : 7:device-mapper-event-1.02.164-7.el7.x86_64                57/73 
+  Verifying  : 1:grub2-tools-extra-2.02-0.81.el7.centos.x86_64            58/73 
+  Verifying  : python-firewall-0.6.3-8.el7.noarch                         59/73 
+  Verifying  : 7:device-mapper-1.02.164-7.el7.x86_64                      60/73 
+  Verifying  : 7:device-mapper-libs-1.02.164-7.el7.x86_64                 61/73 
+  Verifying  : 1:dbus-libs-1.10.24-13.el7_6.x86_64                        62/73 
+  Verifying  : 1:grub2-pc-modules-2.02-0.81.el7.centos.noarch             63/73 
+  Verifying  : binutils-2.27-43.base.el7.x86_64                           64/73 
+  Verifying  : 1:dbus-1.10.24-13.el7_6.x86_64                             65/73 
+  Verifying  : kernel-tools-3.10.0-1127.el7.x86_64                        66/73 
+  Verifying  : kernel-tools-libs-3.10.0-1127.el7.x86_64                   67/73 
+  Verifying  : selinux-policy-targeted-3.13.1-266.el7.noarch              68/73 
+  Verifying  : python-perf-3.10.0-1127.el7.x86_64                         69/73 
+  Verifying  : iprutils-2.4.17.1-3.el7.x86_64                             70/73 
+  Verifying  : 1:grub2-tools-minimal-2.02-0.81.el7.centos.x86_64          71/73 
+  Verifying  : 1:grub2-pc-2.02-0.81.el7.centos.x86_64                     72/73 
+  Verifying  : yum-plugin-fastestmirror-1.1.31-53.el7.noarch              73/73 
+
+Installed:
+  kernel.x86_64 0:3.10.0-1127.19.1.el7                                          
+
+Updated:
+  bind-export-libs.x86_64 32:9.11.4-16.P2.el7_8.6                               
+  binutils.x86_64 0:2.27-43.base.el7_8.1                                        
+  ca-certificates.noarch 0:2020.2.41-70.0.el7_8                                 
+  curl.x86_64 0:7.29.0-57.el7_8.1                                               
+  dbus.x86_64 1:1.10.24-14.el7_8                                                
+  dbus-libs.x86_64 1:1.10.24-14.el7_8                                           
+  device-mapper.x86_64 7:1.02.164-7.el7_8.2                                     
+  device-mapper-event.x86_64 7:1.02.164-7.el7_8.2                               
+  device-mapper-event-libs.x86_64 7:1.02.164-7.el7_8.2                          
+  device-mapper-libs.x86_64 7:1.02.164-7.el7_8.2                                
+  firewalld.noarch 0:0.6.3-8.el7_8.1                                            
+  firewalld-filesystem.noarch 0:0.6.3-8.el7_8.1                                 
+  grub2.x86_64 1:2.02-0.86.el7.centos                                           
+  grub2-common.noarch 1:2.02-0.86.el7.centos                                    
+  grub2-pc.x86_64 1:2.02-0.86.el7.centos                                        
+  grub2-pc-modules.noarch 1:2.02-0.86.el7.centos                                
+  grub2-tools.x86_64 1:2.02-0.86.el7.centos                                     
+  grub2-tools-extra.x86_64 1:2.02-0.86.el7.centos                               
+  grub2-tools-minimal.x86_64 1:2.02-0.86.el7.centos                             
+  iprutils.x86_64 0:2.4.17.1-3.el7_7                                            
+  kernel-tools.x86_64 0:3.10.0-1127.19.1.el7                                    
+  kernel-tools-libs.x86_64 0:3.10.0-1127.19.1.el7                               
+  libcurl.x86_64 0:7.29.0-57.el7_8.1                                            
+  lvm2.x86_64 7:2.02.186-7.el7_8.2                                              
+  lvm2-libs.x86_64 7:2.02.186-7.el7_8.2                                         
+  microcode_ctl.x86_64 2:2.1-61.10.el7_8                                        
+  python-firewall.noarch 0:0.6.3-8.el7_8.1                                      
+  python-perf.x86_64 0:3.10.0-1127.19.1.el7                                     
+  rsyslog.x86_64 0:8.24.0-52.el7_8.2                                            
+  selinux-policy.noarch 0:3.13.1-266.el7_8.1                                    
+  selinux-policy-targeted.noarch 0:3.13.1-266.el7_8.1                           
+  systemd.x86_64 0:219-73.el7_8.9                                               
+  systemd-libs.x86_64 0:219-73.el7_8.9                                          
+  systemd-sysv.x86_64 0:219-73.el7_8.9                                          
+  tzdata.noarch 0:2020a-1.el7                                                   
+  yum-plugin-fastestmirror.noarch 0:1.1.31-54.el7_8                             
+
+Complete!
+[2020-09-11T20:02:52-03:00] WARN: No config file found or specified on command line, using command line options.
+[2020-09-11T20:02:52-03:00] INFO: Auto-discovered chef repository at /home/romeu/Trabalho-FINAL-TCP_IP
+[2020-09-11T20:02:52-03:00] INFO: Started chef-zero at chefzero://localhost:1 with repository at /home/romeu/Trabalho-FINAL-TCP_IP
+  One version per cookbook
+
+[2020-09-11T20:02:52-03:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 13.10.4
+[2020-09-11T20:02:52-03:00] INFO: *** Chef 13.10.4 ***
+[2020-09-11T20:02:52-03:00] INFO: Platform: x86_64-linux
+[2020-09-11T20:02:52-03:00] INFO: Chef-client pid: 31141
+[2020-09-11T20:02:52-03:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+[2020-09-11T20:03:06-03:00] INFO: Setting the run_list to [#<Chef::RunList::RunListItem:0x000000000427e210 @version=nil, @type=:recipe, @name="cookbooks.tgz">] from CLI options
+[2020-09-11T20:03:06-03:00] WARN: Run List override has been provided.
+[2020-09-11T20:03:06-03:00] WARN: Original Run List: [recipe[cookbooks.tgz]]
+[2020-09-11T20:03:06-03:00] WARN: Overridden Run List: [recipe[eucalyptus::cloud-controller]]
+[2020-09-11T20:03:06-03:00] INFO: Run List is [recipe[eucalyptus::cloud-controller]]
+[2020-09-11T20:03:06-03:00] INFO: Run List expands to [eucalyptus::cloud-controller]
+[2020-09-11T20:03:06-03:00] INFO: Starting Chef Run for minty
+[2020-09-11T20:03:06-03:00] INFO: Running start handlers
+[2020-09-11T20:03:06-03:00] INFO: Start handlers complete.
+resolving cookbooks for run list: ["eucalyptus::cloud-controller"]
+[2020-09-11T20:03:06-03:00] INFO: Loading cookbooks [eucalyptus@0.3.19, yum@3.13.0, ntp@3.5.6, selinux@2.1.1]
+[2020-09-11T20:03:06-03:00] INFO: Skipping removal of obsoleted cookbooks from the cache
+Synchronizing Cookbooks:
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/.kitchen.yml in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/LICENSE in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/README.md in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/eucadev/prep.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/eucadev.md in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/HOWTO.txt in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/attributes/default.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/ciab-template.json in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/cloud-in-a-box.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/faststart-logger.priv in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/get-started.txt in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/install-emis/install-emis.py in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/install-emis/install-emis.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/install-nc.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/new-nuke.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/node-template.json in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/nuke.json in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/nuke.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/simple-cloud-in-a-box.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/tutorials/README.txt in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/tutorials/describe-images.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/tutorials/install-image.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/tutorials/launch-instances.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/tutorials/master-tutorial.sh in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/bind-addr.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/ceph.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/create_riakcs_user.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/enterprise.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/eucalyptus_helper.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/key-sync.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/libraries/midonet.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/metadata.json in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/motherbrain.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/chef-metal.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/cloud-controller.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/cloud-service.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/cluster-controller.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/bootstrap.json in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/configure.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/create-first-resources.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/default.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/eucanetd.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/eutester.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/install-source.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/midokura-repo.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/midolman-nuke.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/midolman.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/midonet-cluster.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/midonet-nuke.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/node-controller.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/nuke.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/register-components.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/setupcreds.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/storage-controller.rb in the cache.
+[2020-09-11T20:03:06-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/user-console.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/user-facing.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/walrus.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/roles/cloud-in-a-box.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/roles/cluster.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/roles/endpoints.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/roles/frontend.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/roles/node.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ceph.conf.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/client-keyring.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/eucalyptus.conf.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ifcfg-br-dhcp-vpcmido.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/bootstrap_ceph.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ifcfg-br-dhcp.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ifcfg-br-static-vpcmido.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ifcfg-br-static.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/ifcfg-eth.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/midolman.conf.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/midonet.conf.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/network-edge.json.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/templates/default/network-vpc.json.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/test/integration/ciab/serverspec/ciab_spec.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/CHANGELOG.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/CONTRIBUTING.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/MAINTAINERS.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/README.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/attributes/main.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/libraries/matchers.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/metadata.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/providers/globalconfig.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/recipes/configure-vpc.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/providers/repository.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/recipes/default.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/recipes/dnf_yum_compat.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/resources/globalconfig.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/resources/repository.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/templates/default/main.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/yum/templates/default/repo.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/CHANGELOG.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/CONTRIBUTING.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/README.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/attributes/default.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/files/ntp.ini in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/files/ntp.leapseconds in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/files/usr.sbin.ntpd.apparmor in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/libraries/ntp_helper.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/metadata.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/recipes/apparmor.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/recipes/default.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/recipes/mac_os_x_client.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/recipes/windows_client.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/ntp/templates/ntp.conf.erb in the cache.
+  - ntp (3.5.6)
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/CHANGELOG.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/CONTRIBUTING.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/README.md in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/attributes/default.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/libraries/selinux_service_helpers.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/metadata.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/recipes/_common.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/recipes/default.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/recipes/enforcing.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/recipes/permissive.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/resources/install.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/resources/state.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/resources/state_debian.rb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/templates/default/sysconfig/selinux.erb in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/bootstrap_riakcs.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/chefignore in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/environments/edge-nightly.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/environments/eucalyptus-ceph.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/environments/eucalyptus-default.json in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/eucadev/post.sh in the cache.
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/eucalyptus/faststart/README in the cache.
+  - eucalyptus (0.3.19)
+  - yum (3.13.0)
+[2020-09-11T20:03:07-03:00] INFO: Storing updated cookbooks/selinux/recipes/disabled.rb in the cache.
+  - selinux (2.1.1)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+[2020-09-11T20:03:07-03:00] INFO: In BindAddr bind_interface is ens33
+[2020-09-11T20:03:07-03:00] INFO: In BindAddr bind_network_attr is ""
+[2020-09-11T20:03:07-03:00] INFO: Found Bind addr 172.16.26.130
+[2020-09-11T20:03:07-03:00] INFO: Adding --bind-addr to eucalyptus.conf cloud-opts
+Converging 20 resources
+Recipe: eucalyptus::cloud-controller
+  * yum_package[unzip] action upgrade[2020-09-11T20:03:07-03:00] INFO: Processing yum_package[unzip] action upgrade (eucalyptus::cloud-controller line 20)
+[2020-09-11T20:03:11-03:00] INFO: yum_package[unzip] installing unzip-6.0-21.el7 from base repository
+[2020-09-11T20:03:15-03:00] INFO: yum_package[unzip] upgraded unzip to 6.0-21.el7
+
+    - upgrade package unzip from uninstalled to 6.0-21.el7
+Recipe: eucalyptus::default
+  * directory[/] action create[2020-09-11T20:03:15-03:00] INFO: Processing directory[/] action create (eucalyptus::default line 19)
+ (up to date)
+  * execute[display-ifconfig-status] action nothing[2020-09-11T20:03:15-03:00] INFO: Processing execute[display-ifconfig-status] action nothing (eucalyptus::default line 24)
+ (skipped due to action :nothing)
+  * execute[Flush and save iptables] action run[2020-09-11T20:03:15-03:00] INFO: Processing execute[Flush and save iptables] action run (eucalyptus::default line 62)
+[2020-09-11T20:03:15-03:00] INFO: Processing execute[Guard resource] action run (dynamically defined)
+[2020-09-11T20:03:15-03:00] INFO: execute[Flush and save iptables] ran successfully
+
+    - execute iptables -F; iptables -F -t nat; iptables-save > /etc/sysconfig/iptables
+  * yum_package[chrony] action upgrade[2020-09-11T20:03:15-03:00] INFO: Processing yum_package[chrony] action upgrade (eucalyptus::default line 67)
+[2020-09-11T20:03:16-03:00] INFO: yum_package[chrony] installing chrony-3.4-1.el7 from base repository
+[2020-09-11T20:03:20-03:00] INFO: yum_package[chrony] upgraded chrony to 3.4-1.el7
+
+    - upgrade package chrony from uninstalled to 3.4-1.el7
+  * service[chronyd] action enable[2020-09-11T20:03:20-03:00] INFO: Processing service[chronyd] action enable (eucalyptus::default line 71)
+ (up to date)
+  * service[chronyd] action start[2020-09-11T20:03:20-03:00] INFO: Processing service[chronyd] action start (eucalyptus::default line 71)
+[2020-09-11T20:03:21-03:00] INFO: service[chronyd] started
+
+    - start service service[chronyd]
+  * yum_repository[eucalyptus] action create[2020-09-11T20:03:21-03:00] INFO: Processing yum_repository[eucalyptus] action create (eucalyptus::default line 77)
+
+    * template[/etc/yum.repos.d/eucalyptus.repo] action create[2020-09-11T20:03:21-03:00] INFO: Processing template[/etc/yum.repos.d/eucalyptus.repo] action create (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 37)
+[2020-09-11T20:03:21-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] created file /etc/yum.repos.d/eucalyptus.repo
+
+      - create new file /etc/yum.repos.d/eucalyptus.repo[2020-09-11T20:03:21-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] updated file contents /etc/yum.repos.d/eucalyptus.repo
+
+      - update content in file /etc/yum.repos.d/eucalyptus.repo from none to 786e8a
+      --- /etc/yum.repos.d/eucalyptus.repo	2020-09-11 20:03:21.297104264 -0300
+      +++ /etc/yum.repos.d/.chef-eucalyptus20200911-31141-1g7husx.repo	2020-09-11 20:03:21.296104264 -0300
+      @@ -1 +1,12 @@
+      +# This file was generated by Chef
+      +# Do NOT modify this file by hand.
+      +
+      +[eucalyptus]
+      +name=Eucalyptus Package Repo
+      +baseurl=http://downloads.eucalyptus.cloud/software/eucalyptus/4.4/rhel/7/x86_64/
+      +enabled=1
+      +fastestmirror_enabled=0
+      +gpgcheck=1
+      +gpgkey=https://downloads.eucalyptus.cloud/software/gpg/eucalyptus-release-key.pub https://downloads.eucalyptus.cloud/software/gpg/eucalyptus-release-as-key.pub
+      +metadata_expire=1[2020-09-11T20:03:21-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] mode changed to 644
+
+      - change mode from '' to '0644'
+      - restore selinux security context
+[2020-09-11T20:03:21-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] sending run action to execute[yum clean metadata eucalyptus] (immediate)
+    * execute[yum clean metadata eucalyptus] action run[2020-09-11T20:03:21-03:00] INFO: Processing execute[yum clean metadata eucalyptus] action run (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 54)
+
+      [execute] Loaded plugins: fastestmirror
+                Cleaning repos: eucalyptus
+                0 metadata files removed
+                0 sqlite files removed
+                0 metadata files removed
+[2020-09-11T20:03:21-03:00] INFO: execute[yum clean metadata eucalyptus] ran successfully
+      - execute yum clean metadata --disablerepo=* --enablerepo=eucalyptus
+[2020-09-11T20:03:21-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] sending run action to execute[yum-makecache-eucalyptus] (immediate)
+    * execute[yum-makecache-eucalyptus] action run[2020-09-11T20:03:21-03:00] INFO: Processing execute[yum-makecache-eucalyptus] action run (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 60)
+[2020-09-11T20:03:24-03:00] INFO: execute[yum-makecache-eucalyptus] ran successfully
+
+      - execute yum -q -y makecache --disablerepo=* --enablerepo=eucalyptus
+[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/eucalyptus.repo] sending create action to ruby_block[package-cache-reload-eucalyptus] (immediate)
+    * ruby_block[package-cache-reload-eucalyptus] action create[2020-09-11T20:03:24-03:00] INFO: Processing ruby_block[package-cache-reload-eucalyptus] action create (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 67)
+[2020-09-11T20:03:24-03:00] INFO: ruby_block[package-cache-reload-eucalyptus] called
+
+      - execute the ruby block package-cache-reload-eucalyptus
+    * execute[yum clean metadata eucalyptus] action nothing[2020-09-11T20:03:24-03:00] INFO: Processing execute[yum clean metadata eucalyptus] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 54)
+ (skipped due to action :nothing)
+    * execute[yum-makecache-eucalyptus] action nothing[2020-09-11T20:03:24-03:00] INFO: Processing execute[yum-makecache-eucalyptus] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 60)
+ (skipped due to action :nothing)
+    * ruby_block[package-cache-reload-eucalyptus] action nothing[2020-09-11T20:03:24-03:00] INFO: Processing ruby_block[package-cache-reload-eucalyptus] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 67)
+ (skipped due to action :nothing)
+  
+  * yum_repository[euca2ools] action create[2020-09-11T20:03:24-03:00] INFO: Processing yum_repository[euca2ools] action create (eucalyptus::default line 116)
+
+    * template[/etc/yum.repos.d/euca2ools.repo] action create[2020-09-11T20:03:24-03:00] INFO: Processing template[/etc/yum.repos.d/euca2ools.repo] action create (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 37)
+[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] created file /etc/yum.repos.d/euca2ools.repo
+
+      - create new file /etc/yum.repos.d/euca2ools.repo[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] updated file contents /etc/yum.repos.d/euca2ools.repo
+
+      - update content in file /etc/yum.repos.d/euca2ools.repo from none to 7e816e
+      --- /etc/yum.repos.d/euca2ools.repo	2020-09-11 20:03:24.509104095 -0300
+      +++ /etc/yum.repos.d/.chef-euca2ools20200911-31141-1n5upxq.repo	2020-09-11 20:03:24.508104095 -0300
+      @@ -1 +1,12 @@
+      +# This file was generated by Chef
+      +# Do NOT modify this file by hand.
+      +
+      +[euca2ools]
+      +name=Euca2ools Package Repo
+      +baseurl=http://downloads.eucalyptus.cloud/software/euca2ools/3.4/rhel/7/x86_64/
+      +enabled=1
+      +fastestmirror_enabled=0
+      +gpgcheck=1
+      +gpgkey=https://downloads.eucalyptus.cloud/software/gpg/eucalyptus-release-key.pub
+      +metadata_expire=1[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] mode changed to 644
+
+      - change mode from '' to '0644'
+      - restore selinux security context
+[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] sending run action to execute[yum clean metadata euca2ools] (immediate)
+    * execute[yum clean metadata euca2ools] action run[2020-09-11T20:03:24-03:00] INFO: Processing execute[yum clean metadata euca2ools] action run (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 54)
+
+      [execute] Loaded plugins: fastestmirror
+                Cleaning repos: euca2ools
+                0 metadata files removed
+                0 sqlite files removed
+                0 metadata files removed
+[2020-09-11T20:03:24-03:00] INFO: execute[yum clean metadata euca2ools] ran successfully
+      - execute yum clean metadata --disablerepo=* --enablerepo=euca2ools
+[2020-09-11T20:03:24-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] sending run action to execute[yum-makecache-euca2ools] (immediate)
+    * execute[yum-makecache-euca2ools] action run[2020-09-11T20:03:24-03:00] INFO: Processing execute[yum-makecache-euca2ools] action run (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 60)
+[2020-09-11T20:03:26-03:00] INFO: execute[yum-makecache-euca2ools] ran successfully
+
+      - execute yum -q -y makecache --disablerepo=* --enablerepo=euca2ools
+[2020-09-11T20:03:26-03:00] INFO: template[/etc/yum.repos.d/euca2ools.repo] sending create action to ruby_block[package-cache-reload-euca2ools] (immediate)
+    * ruby_block[package-cache-reload-euca2ools] action create[2020-09-11T20:03:26-03:00] INFO: Processing ruby_block[package-cache-reload-euca2ools] action create (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 67)
+[2020-09-11T20:03:26-03:00] INFO: ruby_block[package-cache-reload-euca2ools] called
+
+      - execute the ruby block package-cache-reload-euca2ools
+    * execute[yum clean metadata euca2ools] action nothing[2020-09-11T20:03:26-03:00] INFO: Processing execute[yum clean metadata euca2ools] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 54)
+ (skipped due to action :nothing)
+    * execute[yum-makecache-euca2ools] action nothing[2020-09-11T20:03:26-03:00] INFO: Processing execute[yum-makecache-euca2ools] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 60)
+ (skipped due to action :nothing)
+    * ruby_block[package-cache-reload-euca2ools] action nothing[2020-09-11T20:03:26-03:00] INFO: Processing ruby_block[package-cache-reload-euca2ools] action nothing (/opt/chefdk/embedded/lib/ruby/gems/2.4.0/gems/chef-13.10.4/lib/chef/provider/yum_repository.rb line 67)
+ (skipped due to action :nothing)
+  
+  * yum_repository[ceph] action create[2020-09-11T20:03:26-03:00] INFO: Processing yum_repository[ceph] action create (eucalyptus::default line 123)
+[2020-09-11T20:03:26-03:00] INFO: Found cluster default with attributes: {"cc"=>["172.16.26.130"], "sc"=>["172.16.26.130"], "nodes"=>["172.16.26.130"], "storage-backend"=>"overlay"}
+[2020-09-11T20:03:26-03:00] INFO: Found addresses: 127.0.0.1  ::1  00:0C:29:35:51:46  172.16.26.130  fe80::765c:e0cb:7e92:d02b
+[2020-09-11T20:03:26-03:00] INFO: Machines in default cluster: 172.16.26.130  172.16.26.130  172.16.26.130
+[2020-09-11T20:03:26-03:00] INFO: Setting cluster name to: default
+ (skipped due to only_if)
+  * remote_file[/tmp/epel-release.rpm] action create[2020-09-11T20:03:26-03:00] INFO: Processing remote_file[/tmp/epel-release.rpm] action create (eucalyptus::default line 130)
+[2020-09-11T23:03:28-03:00] INFO: remote_file[/tmp/epel-release.rpm] created file /tmp/epel-release.rpm
+
+    - create new file /tmp/epel-release.rpm[2020-09-11T23:03:28-03:00] INFO: remote_file[/tmp/epel-release.rpm] updated file contents /tmp/epel-release.rpm
+
+    - update content in file /tmp/epel-release.rpm from none to d6bb83
+    (new content is binary, diff output suppressed)
+    - restore selinux security context
+  * execute[yum install -y *epel*.rpm] action run[2020-09-11T23:03:28-03:00] INFO: Processing execute[yum install -y *epel*.rpm] action run (eucalyptus::default line 135)
+[2020-09-11T23:03:28-03:00] INFO: Processing execute[Guard resource] action run (dynamically defined)
+
+    [execute] Loaded plugins: fastestmirror
+              Examining epel-release.rpm: epel-release-7-12.noarch
+              Marking epel-release.rpm to be installed
+              Resolving Dependencies
+              --> Running transaction check
+              ---> Package epel-release.noarch 0:7-12 will be installed
+              --> Finished Dependency Resolution
+              
+              Dependencies Resolved
+              
+              ================================================================================
+               Package              Arch           Version        Repository             Size
+              ================================================================================
+              Installing:
+               epel-release         noarch         7-12           /epel-release          24 k
+              
+              Transaction Summary
+              ================================================================================
+              Install  1 Package
+              
+              Total size: 24 k
+              Installed size: 24 k
+              Downloading packages:
+              Running transaction check
+              Running transaction test
+              Transaction test succeeded
+              Running transaction
+                Installing : epel-release-7-12.noarch                                     1/1 
+                Verifying  : epel-release-7-12.noarch                                     1/1 
+              
+              Installed:
+                epel-release.noarch 0:7-12                                                    
+              
+              Complete!
+[2020-09-11T23:03:31-03:00] INFO: execute[yum install -y *epel*.rpm] ran successfully
+    - execute yum install -y *epel*.rpm
+  * execute[ssh-keygen -f /root/.ssh/id_rsa -P ''] action run[2020-09-11T23:03:31-03:00] INFO: Processing execute[ssh-keygen -f /root/.ssh/id_rsa -P ''] action run (eucalyptus::default line 140)
+[2020-09-11T23:03:31-03:00] INFO: Processing execute[Guard resource] action run (dynamically defined)
+
+    [execute] Generating public/private rsa key pair.
+              Created directory '/root/.ssh'.
+              Your identification has been saved in /root/.ssh/id_rsa.
+              Your public key has been saved in /root/.ssh/id_rsa.pub.
+              The key fingerprint is:
+              SHA256:vwiw5SfDJHRfqhuHAlWRS5Y/NI9GRg7jwK8Kc+lKGPU root@minty
+              The key's randomart image is:
+              +---[RSA 2048]----+
+              |   .. ==.        |
+              |    .+=+=        |
+              |  . o+o*.+.      |
+              | . + .o.=o.      |
+              |. ..E.o.S.       |
+              |+.o..O o .       |
+              |.* .o X o .      |
+              |. o  . O . .     |
+              |..    . . .      |
+              +----[SHA256]-----+
+[2020-09-11T23:03:31-03:00] INFO: execute[ssh-keygen -f /root/.ssh/id_rsa -P ''] ran successfully
+    - execute ssh-keygen -f /root/.ssh/id_rsa -P ''
+  * execute[Add host key] action run[2020-09-11T23:03:31-03:00] INFO: Processing execute[Add host key] action run (eucalyptus::default line 144)
+[2020-09-11T23:03:31-03:00] INFO: Processing execute[Guard resource] action run (dynamically defined)
+
+    [execute] # 172.16.26.130:22 SSH-2.0-OpenSSH_7.4
+              # 172.16.26.130:22 SSH-2.0-OpenSSH_7.4
+              # 172.16.26.130:22 SSH-2.0-OpenSSH_7.4
+[2020-09-11T23:03:32-03:00] INFO: execute[Add host key] ran successfully
+    - execute ssh-keyscan 172.16.26.130 >> /root/.ssh/known_hosts
+Recipe: eucalyptus::cloud-service
+  * yum_package[eucalyptus-cloud] action upgrade[2020-09-11T23:03:32-03:00] INFO: Processing yum_package[eucalyptus-cloud] action upgrade (eucalyptus::cloud-service line 41)
+[2020-09-11T23:04:10-03:00] INFO: yum_package[eucalyptus-cloud] installing eucalyptus-cloud-4.4.5-0.34.as.el7 from eucalyptus repository
+[2020-09-11T23:06:36-03:00] INFO: yum_package[eucalyptus-cloud] upgraded eucalyptus-cloud to 4.4.5-0.34.as.el7
+
+    - upgrade package eucalyptus-cloud from uninstalled to 4.4.5-0.34.as.el7
+[2020-09-11T23:06:36-03:00] INFO: yum_package[eucalyptus-cloud] sending create action to template[eucalyptus.conf] (immediate)
+  * template[eucalyptus.conf] action create[2020-09-11T23:06:36-03:00] INFO: Processing template[eucalyptus.conf] action create (eucalyptus::cloud-service line 60)
+[2020-09-11T23:06:36-03:00] INFO: template[eucalyptus.conf] backed up to /root/.chef/local-mode-cache/backup//etc/eucalyptus/eucalyptus.conf.chef-20200911230636.871332
+[2020-09-11T23:06:36-03:00] INFO: template[eucalyptus.conf] updated file contents //etc/eucalyptus/eucalyptus.conf
+
+    - update content in file //etc/eucalyptus/eucalyptus.conf from 4eab7b to 128e90
+    --- //etc/eucalyptus/eucalyptus.conf	2018-12-28 14:14:36.000000000 -0300
+    +++ /etc/eucalyptus/.chef-eucalyptus20200911-31141-w7k7qq.conf	2020-09-11 23:06:36.861638293 -0300
+    @@ -1,190 +1,23 @@
+    -###########################################################################
+    -# GLOBAL CONFIGURATION
+    -###########################################################################
+    -
+    -# Where Eucalyptus is installed
+     EUCALYPTUS="/"
+    -
+    -# This is the username that you would like eucalyptus to run as
+    +LOGLEVEL="INFO"
+     EUCA_USER="eucalyptus"
+    -
+    -# Extra options to pass to the eucalyptus-cloud process, such as log
+    -# levels, heap size, or other JVM flags.
+    -CLOUD_OPTS=""
+    -
+    -###########################################################################
+    -# CLUSTER CONTROLLER (CC) / NODE CONTROLLER (NC) SHARED CONFIGURATION
+    -###########################################################################
+    -
+    -# The level of logging output.  Valid settings are, in descending order of
+    -# verbosity: EXTREME, TRACE, DEBUG, INFO, WARN, ERROR, and FATAL.  The
+    -# default is INFO.
+    -#LOGLEVEL="INFO"
+    -
+    -# The number of old log files to keep when rotating logs, in range [0-999].
+    -# The default is 10. When set to 0, no rotation is performed and log size
+    -# limit is (LOGMAXSIZE, below) is not enforced.
+    -#LOGROLLNUMBER="10"
+    -
+    -# The maximum size of the log file, in bytes. 100MB by default. For this
+    -# size to be enforced, LOGROLLNUMBER, above, must be 1 or higher. If log
+    -# rotation is performed by an outside tool, either set LOGROLLNUMBER to 0
+    -# or set this limit to a large value.
+    -#LOGMAXSIZE=104857600
+    -
+    -# On a NC, this defines the TCP port on which the NC will listen.
+    -# On a CC, this defines the TCP port on which the CC will contact NCs.
+    -NC_PORT="8775"
+    -
+    -###########################################################################
+    -# CLUSTER CONTROLLER (CC) CONFIGURATION
+    -###########################################################################
+    -
+    -# The TCP port on which the CC will listen.
+    +CLOUD_OPTS=" --bind-addr=172.16.26.130"
+     CC_PORT="8774"
+    -
+    -# The scheduling policy that the CC uses to choose the NC on which to
+    -# run each new instance.  Valid settings include GREEDY and ROUNDROBIN.
+    -# The default scheduling policy is ROUNDROBIN.
+     SCHEDPOLICY="ROUNDROBIN"
+    -
+    -# A space-separated list of IP addresses for all the NCs that this CC
+    -# should communicate with.  The ``clusteradmin-register-nodes'' command
+    -# manipulates this setting.
+     NODES=""
+    -
+    -###########################################################################
+    -# NODE CONTROLLER (NC) CONFIGURATION
+    -###########################################################################
+    -
+    -# The hypervisor that the NC will interact with in order to manage
+    -# virtual machines.  Supported values include "kvm" and "xen".
+    +NC_PORT="8775"
+     HYPERVISOR="kvm"
+    -
+    -# The following three options determine whether KVM uses Virtio for
+    -# specific types of I/O with instances.  These options only affect the
+    -# KVM hypervisor.
+    -
+    -# If "1", use Virtio for the root file system
+    +MAX_CORES="0"
+    +INSTANCE_PATH="/var/lib/eucalyptus/instances"
+     USE_VIRTIO_ROOT="1"
+    -
+    -# If "1", use Virtio for dynamic block volumes
+     USE_VIRTIO_DISK="1"
+    -
+    -# If "1", use Virtio for the network card
+     USE_VIRTIO_NET="1"
+    -
+    -# The number of virtual CPU cores that Eucalyptus is allowed to allocate
+    -# to instances.  The default value of 0 allows Eucalyptus to use all
+    -# CPU cores on the system.
+    -#MAX_CORES="0"
+    -
+    -# The amount of disk space, in megabytes, that the NC is allowed to use
+    -# in its work directory ($INSTANCE_PATH/eucalyptus/work).  By default
+    -# the NC chooses automatically.  Values below 10 are ignored.
+    -#NC_WORK_SIZE=50000
+    -
+    -# The amount of disk space, in megabytes, that the NC is allowed to use in
+    -# its image cache directory ($INSTANCE_PATH/eucalyptus/cache).  By default
+    -# the NC chooses automatically.  A value below 10 will disable caching.
+    -#NC_CACHE_SIZE=50000
+    -
+    -# The number of disk-intensive operations that the NC is allowed to
+    -# perform at once.  A value of 1 serializes all disk-intensive operations.
+    -# The default value is 4.
+    -#CONCURRENT_DISK_OPS=4
+    -
+    -# The directory where the NC will store instances' root filesystems,
+    -# ephemeral storage, and cached copies of images.
+    -INSTANCE_PATH="/var/lib/eucalyptus/instances"
+    -
+    -# If euca-bundle-upload, euca-check-bucket, or euca-delete-bundle do
+    -# not appear in the NC's search PATH then specify their locations here.
+    -#NC_BUNDLE_UPLOAD_PATH="/usr/bin/euca-bundle-upload"
+    -#NC_CHECK_BUCKET_PATH="/usr/bin/euca-check-bucket"
+    -#NC_DELETE_BUNDLE_PATH="/usr/bin/euca-delete-bundle"
+    -
+    -# The maximum amount of time, in seconds, that an instance will remain
+    -# in a migration-ready state on a source NC while awaiting the
+    -# preparation of a destination NC for a migration. After this time
+    -# period, the migration request will be terminated and the any
+    -# preparation on the source NC will be rolled back. Default is 15
+    -# minutes.
+    -#NC_MIGRATION_READY_THRESHOLD=900
+    -
+    -# The number of connection attempts that NC will try to downlaod an
+    -# image or image manifest from Walrus. Failure to download may be
+    -# due to a registered image not being available for download while
+    -# Walrus is decrypting and caching it. Smallest allowed value is 1,
+    -# while the biggest is 98. The default, as of 3.3.1, is 9, which 
+    -# gives over 13 minutes of wait time. (Download attempts are backed
+    -# off at exponentially increasing intervals up to a max of 300 sec
+    -# between retries.)
+    -#WALRUS_DOWNLOAD_MAX_ATTEMPTS=9
+    -
+    -# Name of the user on the Ceph installation that requests
+    -# from Eucalyptus should use.
+    -#
+    -#CEPH_USER_NAME="eucalyptus"
+    -
+    -# Path to the file containing the keyring that Eucalyptus
+    -# should use when interacting with Ceph.
+    -#
+    -#CEPH_KEYRING_PATH="/etc/ceph/ceph.client.eucalyptus.keyring"
+    -
+    -# Path to the configuration file for Ceph installation
+    -# on the Node Controller host.
+    -#
+    -#CEPH_CONFIG_PATH="/etc/ceph/ceph.conf"
+    -
+    -# Toggle for requesting that the CPU visible to the guest should
+    -# be exactly the same as the host CPU even in the aspects that
+    -# libvirt does not understand. Setting this to 1 enables passthrough,
+    -# which may restrict ability of instances to migrate between similar
+    -# but not identical CPUs. On the other hand, passthrough is necessary
+    -# for nested virtualization. Default value is not to pass through.
+    -#
+    -#USE_CPU_PASSTHROUGH="0"
+    -
+    -# By default we configure libvirt to not use policy kit (polkitd) for 
+    -# socket authentication due to NC to libvirt communication issues. 
+    -# If required, setting this value to 1 will configure libvirtd to 
+    -# use polkit. Default is to disable polkit. Setting to -1 will disable
+    -# modification of the libvirt configuration file.
+    -#LIBVIRT_USE_POLICY_KIT="0"
+    -
+    -###########################################################################
+    -# NETWORKING CONFIGURATION
+    -#
+    -# The set of networking settings that apply to a cloud varies based on
+    -# its networking mode.  Each setting in this section lists the modes in
+    -# which it applies.  Unless otherwise noted, all of these settings apply
+    -# only to CCs.  All settings that lack default values must be specified
+    -# in the networking modes that use them.
+    -###########################################################################
+    -
+    -# The networking mode in which to run. The same mode must be specified
+    -# on all CCs and NCs in the entire cloud. Valid values are EDGE and VPCMIDO
+    -#VNET_MODE="EDGE"
+    -
+    -# On an NC, this is the name of the network interface that is connected
+    -# to the same network as the CC.  The default is "eth0".
+    -# Networking modes: EDGE
+    -VNET_PUBINTERFACE="eth0"
+    -
+    -# On an NC, this is the name of the bridge interface to which instances'
+    -# network interfaces should attach.  A physical interface that can reach
+    -# the CC must be attached to this bridge (in VPCMIDO mode there is no
+    -# need to attach this physical interface).
+    -# Networking modes: EDGE, VPCMIDO
+    +VNET_MODE="EDGE"
+    +VNET_PRIVINTERFACE="br0"
+    +VNET_PUBINTERFACE="br0"
+     VNET_BRIDGE="br0"
+    -
+    -# The ISC DHCP server executable to use.  The default is
+    -# "/usr/sbin/dhcpd".
+    -# Networking modes: EDGE
+     VNET_DHCPDAEMON="/usr/sbin/dhcpd"
+    -
+    -# systemctl executable to use. Defaults to /usr/bin/systemctl
+    -# Networking modes: EDGE, VPCMIDO
+    -#VNET_SYSTEMCTL="/usr/bin/systemctl"
+    +METADATA_USE_VM_PRIVATE="N"
+    +DISABLE_TUNNELING="Y"
+    +MAX_INSTANCES_PER_CC="128"
+    - restore selinux security context
+  * yum_package[eucalyptus-admin-tools] action upgrade[2020-09-11T23:06:36-03:00] INFO: Processing yum_package[eucalyptus-admin-tools] action upgrade (eucalyptus::cloud-service line 47)
+ (up to date)
+  * yum_package[euca2ools] action upgrade[2020-09-11T23:06:37-03:00] INFO: Processing yum_package[euca2ools] action upgrade (eucalyptus::cloud-service line 55)
+ (up to date)
+  * template[eucalyptus.conf] action create[2020-09-11T23:06:37-03:00] INFO: Processing template[eucalyptus.conf] action create (eucalyptus::cloud-service line 60)
+ (up to date)
+Recipe: eucalyptus::cloud-controller
+  * execute[Initialize Eucalyptus DB] action run[2020-09-11T23:06:37-03:00] INFO: Processing execute[Initialize Eucalyptus DB] action run (eucalyptus::cloud-controller line 27)
+
+    [execute] 2020-09-11 23:06:37 INFO ulimit: resource=7 soft=1024 hard=4096
+              2020-09-11 23:06:37 INFO ulimit: resource=7 soft=65535 hard=65535
+              2020-09-11 23:06:37 INFO ulimit: resource=6 soft=5867 hard=5867
+              2020-09-11 23:06:37 INFO ulimit: resource=6 soft=-1 hard=-1
+              2020-09-11 23:06:38 32922 INFO User did not set heap size. Setting it automatically to 2GB base on total memory of 1562742784 bytes
+              OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
+              2020-09-11 23:06:41 INFO Returning Bootstrapper instance.
+              2020-09-11 23:08:25 INFO Executing Pre-Shutdown Hooks...
+              2020-09-11 23:08:25 INFO Executing Shutdown Hooks...
+              2020-09-11 23:08:25 INFO Executing Shutdown Hook: com.eucalyptus.component.BasicService$1@33d20999
+              2020-09-11 23:08:26 INFO Executing Post-Shutdown Hooks...
+              2020-09-11 23:08:26 INFO Executing Post-Shutdown Hook: com.eucalyptus.system.Threads$ThreadPool$1@2e2345b3
+              2020-09-11 23:08:26 INFO SHUTDOWN:eucalyptus-system Stopping thread pool...
+              2020-09-11 23:08:26 INFO Executing Post-Shutdown Hook: PostgresqlBootstrapper$2@71a74c06
+              2020-09-11 23:08:26 INFO Executing Post-Shutdown Hook: com.eucalyptus.system.Threads$ThreadPool$1@1c708c1e
+              2020-09-11 23:08:26 INFO SHUTDOWN:eucalyptus-bootstrap-futures Stopping thread pool...
+              2020-09-11 23:08:26 32919 INFO Service shut down cleanly.
+[2020-09-11T23:08:26-03:00] INFO: execute[Initialize Eucalyptus DB] ran successfully
+    - execute //usr/sbin/clcadmin-initialize-cloud
+  * execute[Configure kernel parameters from 70-eucalyptus-cloud.conf] action run[2020-09-11T23:08:26-03:00] INFO: Processing execute[Configure kernel parameters from 70-eucalyptus-cloud.conf] action run (eucalyptus::cloud-controller line 43)
+[2020-09-11T23:08:26-03:00] INFO: execute[Configure kernel parameters from 70-eucalyptus-cloud.conf] ran successfully
+
+    - execute /usr/lib/systemd/systemd-sysctl 70-eucalyptus-cloud.conf
+  * service[eucalyptus-cloud] action enable[2020-09-11T23:08:26-03:00] INFO: Processing service[eucalyptus-cloud] action enable (eucalyptus::cloud-controller line 47)
+[2020-09-11T23:08:26-03:00] INFO: service[eucalyptus-cloud] enabled
+
+    - enable service service[eucalyptus-cloud]
+  * service[eucalyptus-cloud] action start[2020-09-11T23:08:26-03:00] INFO: Processing service[eucalyptus-cloud] action start (eucalyptus::cloud-controller line 47)
+[2020-09-11T23:08:27-03:00] INFO: service[eucalyptus-cloud] started
+
+    - start service service[eucalyptus-cloud]
+[2020-09-11T23:08:27-03:00] WARN: Skipping final node save because override_runlist was given
+[2020-09-11T23:08:27-03:00] INFO: Chef Run complete in 11120.987707633 seconds
+[2020-09-11T23:08:27-03:00] INFO: Skipping removal of unused files from the cache
+
+Running handlers:
+[2020-09-11T23:08:27-03:00] INFO: Running report handlers
+Running handlers complete
+[2020-09-11T23:08:27-03:00] INFO: Report handlers complete
+Chef Client finished, 24/37 resources updated in 03 hours 05 minutes 34 seconds
+[2020-09-11T23:08:27-03:00] WARN: No config file found or specified on command line, using command line options.
+[2020-09-11T23:08:53-03:00] WARN: No config file found or specified on command line, using command line options.
+[2020-09-11T23:08:53-03:00] INFO: Auto-discovered chef repository at /home/romeu/Trabalho-FINAL-TCP_IP
+[2020-09-11T23:08:56-03:00] INFO: Started chef-zero at chefzero://localhost:1 with repository at /home/romeu/Trabalho-FINAL-TCP_IP
+  One version per cookbook
+
+[2020-09-11T23:08:56-03:00] INFO: Forking chef instance to converge...
+Starting Chef Client, version 13.10.4
+[2020-09-11T23:08:56-03:00] INFO: *** Chef 13.10.4 ***
+[2020-09-11T23:08:56-03:00] INFO: Platform: x86_64-linux
+[2020-09-11T23:08:56-03:00] INFO: Chef-client pid: 33709
+[2020-09-11T23:08:56-03:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+[2020-09-11T23:09:26-03:00] INFO: Setting the run_list to [#<Chef::RunList::RunListItem:0x000000000248e5c0 @version=nil, @type=:recipe, @name="cookbooks.tgz">] from CLI options
+[2020-09-11T23:09:26-03:00] WARN: Run List override has been provided.
+[2020-09-11T23:09:26-03:00] WARN: Original Run List: [recipe[cookbooks.tgz]]
+[2020-09-11T23:09:26-03:00] WARN: Overridden Run List: [recipe[eucalyptus::user-console], recipe[eucalyptus::register-components], recipe[eucalyptus::walrus], recipe[eucalyptus::cluster-controller], recipe[eucalyptus::storage-controller], recipe[eucalyptus::node-controller], recipe[eucalyptus::configure]]
+[2020-09-11T23:09:26-03:00] INFO: Run List is [recipe[eucalyptus::user-console], recipe[eucalyptus::register-components], recipe[eucalyptus::walrus], recipe[eucalyptus::cluster-controller], recipe[eucalyptus::storage-controller], recipe[eucalyptus::node-controller], recipe[eucalyptus::configure]]
+[2020-09-11T23:09:26-03:00] INFO: Run List expands to [eucalyptus::user-console, eucalyptus::register-components, eucalyptus::walrus, eucalyptus::cluster-controller, eucalyptus::storage-controller, eucalyptus::node-controller, eucalyptus::configure]
+[2020-09-11T23:09:26-03:00] INFO: Starting Chef Run for minty
+[2020-09-11T23:09:26-03:00] INFO: Running start handlers
+[2020-09-11T23:09:26-03:00] INFO: Start handlers complete.
+resolving cookbooks for run list: ["eucalyptus::user-console", "eucalyptus::register-components", "eucalyptus::walrus", "eucalyptus::cluster-controller", "eucalyptus::storage-controller", "eucalyptus::node-controller", "eucalyptus::configure"]
+[2020-09-11T23:09:29-03:00] INFO: Loading cookbooks [eucalyptus@0.3.19, yum@3.13.0, ntp@3.5.6, selinux@2.1.1]
+[2020-09-11T23:09:30-03:00] INFO: Skipping removal of obsoleted cookbooks from the cache
+Synchronizing Cookbooks:
+  - eucalyptus (0.3.19)
+  - yum (3.13.0)
+  - ntp (3.5.6)
+  - selinux (2.1.1)
+Installing Cookbook Gems:
+Compiling Cookbooks...
+[2020-09-11T23:09:31-03:00] INFO: In BindAddr bind_interface is ens33
+[2020-09-11T23:09:31-03:00] INFO: In BindAddr bind_network_attr is ""
+[2020-09-11T23:09:31-03:00] INFO: Found Bind addr 172.16.26.131
+[2020-09-11T23:09:31-03:00] INFO: Found cluster default with attributes: {"cc"=>["172.16.26.130"], "sc"=>["172.16.26.130"], "nodes"=>["172.16.26.130"], "storage-backend"=>"overlay"}
+[2020-09-11T23:09:31-03:00] INFO: Found addresses: 127.0.0.1  ::1  00:0C:29:35:51:46  172.16.26.131  fe80::765c:e0cb:7e92:d02b
+[2020-09-11T23:09:31-03:00] INFO: Machines in default cluster: 172.16.26.130  172.16.26.130  172.16.26.130
+
+================================================================================
+Recipe Compile Error in /root/.chef/local-mode-cache/cache/cookbooks/eucalyptus/recipes/cluster-controller.rb
+================================================================================
+
+RuntimeError
+------------
+Unable to determine local cluster name for 172.16.26.131
+
+Cookbook Trace:
+---------------
+  /root/.chef/local-mode-cache/cache/cookbooks/eucalyptus/libraries/key-sync.rb:65:in `get_local_cluster_name'
+  /root/.chef/local-mode-cache/cache/cookbooks/eucalyptus/recipes/cluster-controller.rb:46:in `from_file'
+
+Relevant File Content:
+----------------------
+/root/.chef/local-mode-cache/cache/cookbooks/eucalyptus/libraries/key-sync.rb:
+
+ 58:          all_cluster_machines.each do |ip|
+ 59:            if addresses.include?(ip)
+ 60:                Chef::Log.info "Setting cluster name to: " + name
+ 61:                return name
+ 62:            end
+ 63:          end
+ 64:        end
+ 65>>       raise "Unable to determine local cluster name for #{node[:ipaddress]}"
+ 66:      end
+ 67:  
+ 68:      def self.get_cluster_keys(node, component)
+ 69:        local_cluster_name = self.get_local_cluster_name(node)
+ 70:        clc = self.get_clc(node)
+ 71:        cluster_keys = clc.attributes["eucalyptus"]["cloud-keys"][local_cluster_name]
+ 72:        euca_p12 = clc.attributes["eucalyptus"]["cloud-keys"]["euca.p12"]
+ 73:        ### Write cluster keys to disk
+ 74:        cluster_keys.each do |key_name,data|
+
+System Info:
+------------
+chef_version=13.10.4
+platform=centos
+platform_version=7.8.2003
+ruby=ruby 2.4.4p296 (2018-03-28 revision 63013) [x86_64-linux]
+program_name=chef-client worker: ppid=33616;start=23:08:56;
+executable=/opt/chefdk/bin/chef-client
+
+
+Running handlers:
+[2020-09-11T23:09:31-03:00] ERROR: Running exception handlers
+Running handlers complete
+[2020-09-11T23:09:31-03:00] ERROR: Exception handlers complete
+Chef Client failed. 0 resources updated in 34 seconds
+[2020-09-11T23:09:31-03:00] FATAL: Stacktrace dumped to /root/.chef/local-mode-cache/cache/chef-stacktrace.out
+[2020-09-11T23:09:31-03:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2020-09-11T23:09:31-03:00] ERROR: Unable to determine local cluster name for 172.16.26.131
+[2020-09-11T23:09:31-03:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef run process exited unsuccessfully (exit code 1)

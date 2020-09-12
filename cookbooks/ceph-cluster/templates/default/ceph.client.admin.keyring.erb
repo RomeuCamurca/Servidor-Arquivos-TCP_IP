@@ -1,0 +1,7 @@
+[client.admin]
+<% if node['ceph']['client-admin-key'] -%>
+  key = <%= node['ceph']['client-admin-key'] %>
+<% end -%>
+  caps mds = "allow"
+  caps mon = "allow *"
+  caps osd = "allow *"

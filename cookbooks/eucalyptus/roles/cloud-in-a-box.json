@@ -1,0 +1,28 @@
+{
+  "name": "cloud-in-a-box",
+  "description": "Single node deployment",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+    "eucalyptus": {
+      "network": {
+        "public-interface": "br0",
+        "private-interface": "br0"
+      },
+      "dns": {
+        "domain": "192.168.192.101.xip.io"
+      }
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[eucalyptus::cloud-controller]",
+    "recipe[eucalyptus::register-components]",
+    "recipe[eucalyptus::user-console]",
+    "recipe[eucalyptus::storage-controller]",
+    "recipe[eucalyptus::walrus]",
+    "recipe[eucalyptus::cluster-controller]",
+    "recipe[eucalyptus::node-controller]",
+    "recipe[eucalyptus::configure]",
+    "recipe[eucalyptus::create-first-resources]"
+  ]
+}

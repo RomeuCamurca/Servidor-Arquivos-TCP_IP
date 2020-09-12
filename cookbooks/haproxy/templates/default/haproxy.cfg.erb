@@ -1,0 +1,37 @@
+global
+    log 127.0.0.1     local0
+    log 127.0.0.1     local1 notice
+    maxconn           256000
+    spread-checks     5
+    daemon
+
+defaults
+    log               global
+    option            dontlognull
+    option            redispatch
+    option            allbackups
+    no option         httpclose
+    retries           3
+    maxconn           256000
+    timeout connect   5000
+    timeout client    5000
+    timeout server    5000
+
+
+frontend riak_cs
+    bind              0.0.0.0:<%= node['haproxy']['incoming_port'] %>
+    mode              http
+    option            httplog
+    capture           request header Host len 64
+    default_backend riak_cs_backend
+
+backend riak_cs_backend
+    mode              http
+    balance           roundrobin
+    # Ping Riak CS to determine health
+    option            httpchk GET /riak-cs/ping
+    timeout connect 60s
+    timeout http-request 60s
+    <% node['haproxy']['members'].each do |member| %>
+    <%= member %>
+    <% end %>
